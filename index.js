@@ -1,4 +1,4 @@
 import React from 'react';
-import VendorSearch from './VendorSearch';
+import OrganizationSearch from './OrganizationSearch';
 
-export default props => <VendorSearch {...props} />;
+export default props => <OrganizationSearch {...props} />;
