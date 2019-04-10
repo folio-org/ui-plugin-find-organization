@@ -1,19 +1,19 @@
 {
-  "name": "@folio/plugin-find-vendor",
-  "version": "1.3.2",
-  "description": "Vendor-finder for Stripes",
-  "repository": "folio-org/ui-plugin-find-vendor",
+  "name": "@folio/plugin-find-organization",
+  "version": "1.0.0",
+  "description": "Organization-finder for Stripes",
+  "repository": "folio-org/ui-plugin-find-organization",
   "publishConfig": {
     "registry": "https://repository.folio.org/repository/npm-folio/"
   },
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.9.4"
   },
   "stripes": {
     "type": "plugin",
-    "pluginType": "find-vendor",
-    "displayName": "ui-plugin-find-vendor.meta.title"
+    "pluginType": "find-organization",
+    "displayName": "ui-plugin-find-organization.meta.title"
   },
   "scripts": {
     "lint": "eslint .",
@@ -31,7 +31,7 @@
     "redux": "^4.0.0"
   },
   "dependencies": {
-    "@folio/vendors": "^1.1.0",
+    "@folio/organizations": "^1.0.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0"
   },

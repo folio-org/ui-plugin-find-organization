@@ -1,4 +1,4 @@
-# ui-plugin-find-vendor
+# ui-plugin-find-organization
 
 Copyright (C) 2017-2019 The Open Library Foundation
 
@@ -7,9 +7,9 @@ Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
 
 ## Introduction
 
-This package furnishes a single Stripes plugin of type `find-vendor`,
+This package furnishes a single Stripes plugin of type `find-organization`,
 which can be included in Stripes modules by means of a `<Pluggable
-type="find-vendor">` element. See [the *Plugins*
+type="find-organization">` element. See [the *Plugins*
 section](https://github.com/folio-org/stripes-core/blob/master/doc/dev-guide.md#plugins)
 of the Module Developer's Guide.
 

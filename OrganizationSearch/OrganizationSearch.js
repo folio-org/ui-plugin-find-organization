@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Button, Icon } from '@folio/stripes/components';
 import className from 'classnames';
 
-import css from './VendorSearch.css';
-import VendorSearchModal from './VendorSearchModal';
+import css from './OrganizationSearch.css';
+import OrganizationSearchModal from './OrganizationSearchModal';
 
-class VendorSearch extends Component {
+class OrganizationSearch extends Component {
   constructor(props) {
     super(props);
 
@@ -43,10 +43,10 @@ class VendorSearch extends Component {
   render() {
     return (
       <div className={this.getStyle()}>
-        <FormattedMessage id="ui-plugin-find-vendor.searchButton.title">
+        <FormattedMessage id="ui-plugin-find-organization.searchButton.title">
           {ariaLabel => (
             <Button
-              id="clickable-plugin-find-vendor"
+              id="clickable-plugin-find-organization"
               key="searchButton"
               buttonStyle={this.props.searchButtonStyle}
               onClick={this.openModal}
@@ -57,7 +57,7 @@ class VendorSearch extends Component {
             </Button>
           )}
         </FormattedMessage>
-        <VendorSearchModal
+        <OrganizationSearchModal
           openWhen={this.state.openModal}
           closeCB={this.closeModal}
           {...this.props}
@@ -67,15 +67,15 @@ class VendorSearch extends Component {
   }
 }
 
-VendorSearch.defaultProps = {
+OrganizationSearch.defaultProps = {
   searchButtonStyle: 'primary noRightRadius',
 };
 
-VendorSearch.propTypes = {
+OrganizationSearch.propTypes = {
   searchLabel: PropTypes.string,
   searchButtonStyle: PropTypes.string,
   marginBottom0: PropTypes.bool,
   marginTop0: PropTypes.bool,
 };
 
-export default VendorSearch;
+export default OrganizationSearch;

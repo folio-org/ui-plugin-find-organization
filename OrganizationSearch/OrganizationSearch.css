@@ -12,10 +12,10 @@
   }
 }
 
-.vendorSearchModal {
+.organizationSearchModal {
   min-height: 400px;
 }
 
-.vendorError {
+.organizationError {
   color: red
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import Vendors from '@folio/vendors/src/Main';
+import Organizations from '@folio/organizations/src/Main';
 import { Modal } from '@folio/stripes/components';
 import packageInfo from '../package';
-import css from './VendorSearch.css';
+import css from './OrganizationSearch.css';
 
-export default class VendorSearchModal extends Component {
+export default class OrganizationSearchModal extends Component {
   static propTypes = {
     stripes: PropTypes.shape({
       connect: PropTypes.func.isRequired,
@@ -22,7 +22,7 @@ export default class VendorSearchModal extends Component {
     super(props);
 
     const dataKey = props.dataKey;
-    this.connectedApp = props.stripes.connect(Vendors, { dataKey });
+    this.connectedApp = props.stripes.connect(Organizations, { dataKey });
 
     this.state = {
       error: null,
@@ -57,11 +57,11 @@ export default class VendorSearchModal extends Component {
         onClose={this.closeModal}
         size="large"
         open={this.props.openWhen}
-        label={<FormattedMessage id="ui-plugin-find-vendor.modal.label" />}
+        label={<FormattedMessage id="ui-plugin-find-organization.modal.label" />}
         dismissible
       >
-        <div className={css.vendorSearchModal}>
-          {this.state.error ? <div className={css.vendorError}>{this.state.error}</div> : null}
+        <div className={css.organizationSearchModal}>
+          {this.state.error ? <div className={css.organizationError}>{this.state.error}</div> : null}
           <this.connectedApp {...this.props} packageInfo={packageInfo} onSelectRow={this.passVendorOut} onComponentWillUnmount={this.props.onCloseModal} showSingleResult={false} browseOnly />
         </div>
       </Modal>
