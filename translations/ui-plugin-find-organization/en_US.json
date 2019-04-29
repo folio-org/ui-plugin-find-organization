@@ -1,5 +1,5 @@
 {
-    "meta.title": "Organization-finder (plugin)",
-    "modal.label": "Select Organization",
-    "searchButton.title": "Find Organization"
+    "meta.title": "Vendor-finder (plugin)",
+    "modal.label": "Select vendor",
+    "searchButton.title": "Find vendor"
 }
