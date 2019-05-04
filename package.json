@@ -13,7 +13,7 @@
   "stripes": {
     "type": "plugin",
     "pluginType": "find-organization",
-    "displayName": "ui-plugin-find-organization.meta.title"
+    "displayName": "ui-plugin-find-organization.meta.pluginTitle"
   },
   "scripts": {
     "lint": "eslint .",
