@@ -1,5 +1,5 @@
 {
-    "meta.title": "Localizador de fornecedores (plugin)",
     "modal.label": "Selecione o fornecedor",
-    "searchButton.title": "Encontrar fornecedor"
+    "searchButton.title": "Encontrar fornecedor",
+    "meta.pluginTitle": "Vendors"
 }

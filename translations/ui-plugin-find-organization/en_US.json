@@ -1,5 +1,5 @@
 {
-    "meta.title": "Vendor-finder (plugin)",
     "modal.label": "Select vendor",
-    "searchButton.title": "Find vendor"
+    "searchButton.title": "Find vendor",
+    "meta.pluginTitle": "Vendors"
 }

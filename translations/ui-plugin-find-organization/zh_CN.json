@@ -1,5 +1,5 @@
 {
-    "meta.title": "供应商查找器(插件)",
     "modal.label": "选择供应商",
-    "searchButton.title": "查找供应商"
+    "searchButton.title": "查找供应商",
+    "meta.pluginTitle": "Vendors"
 }
