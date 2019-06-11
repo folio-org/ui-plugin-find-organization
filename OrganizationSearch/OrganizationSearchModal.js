@@ -22,6 +22,7 @@ export default class OrganizationSearchModal extends Component {
     super(props);
 
     const dataKey = props.dataKey;
+
     this.connectedApp = props.stripes.connect(Organizations, { dataKey });
 
     this.state = {
@@ -62,7 +63,14 @@ export default class OrganizationSearchModal extends Component {
       >
         <div className={css.organizationSearchModal}>
           {this.state.error ? <div className={css.organizationError}>{this.state.error}</div> : null}
-          <this.connectedApp {...this.props} packageInfo={packageInfo} onSelectRow={this.passVendorOut} onComponentWillUnmount={this.props.onCloseModal} showSingleResult={false} browseOnly />
+          <this.connectedApp
+            {...this.props}
+            packageInfo={packageInfo}
+            onSelectRow={this.passVendorOut}
+            onComponentWillUnmount={this.props.onCloseModal}
+            showSingleResult={false}
+            browseOnly
+          />
         </div>
       </Modal>
     );
