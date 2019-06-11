@@ -21,6 +21,7 @@ class OrganizationSearch extends Component {
 
   getStyle() {
     const { marginBottom0, marginTop0 } = this.props;
+
     return className(
       css.searchControl,
       { [css.marginBottom0]: marginBottom0 },
