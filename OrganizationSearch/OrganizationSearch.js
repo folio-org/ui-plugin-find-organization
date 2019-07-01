@@ -42,7 +42,7 @@ class OrganizationSearch extends Component {
   }
 
   render() {
-    const { id } = this.props;
+    const { id, buttonProps } = this.props;
 
     return (
       <div className={this.getStyle()}>
@@ -55,6 +55,7 @@ class OrganizationSearch extends Component {
               onClick={this.openModal}
               ariaLabel={ariaLabel}
               tabIndex="-1"
+              {...buttonProps}
             >
               {this.props.searchLabel ? this.props.searchLabel : <Icon icon="search" color="#fff" />}
             </Button>
@@ -72,10 +73,12 @@ class OrganizationSearch extends Component {
 
 OrganizationSearch.defaultProps = {
   searchButtonStyle: 'primary noRightRadius',
+  buttonProps: {},
   id: 'clickable-plugin-find-organization',
 };
 
 OrganizationSearch.propTypes = {
+  buttonProps: PropTypes.object,
   id: PropTypes.string,
   searchLabel: PropTypes.string,
   searchButtonStyle: PropTypes.string,
