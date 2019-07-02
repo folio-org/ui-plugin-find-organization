@@ -42,7 +42,7 @@ class OrganizationSearch extends Component {
   }
 
   render() {
-    const { id } = this.props;
+    const { id, buttonProps: { marginBottom0 } } = this.props;
 
     return (
       <div className={this.getStyle()}>
@@ -52,6 +52,7 @@ class OrganizationSearch extends Component {
               id={id}
               key="searchButton"
               buttonStyle={this.props.searchButtonStyle}
+              marginBottom0={marginBottom0}
               onClick={this.openModal}
               ariaLabel={ariaLabel}
               tabIndex="-1"
@@ -76,6 +77,9 @@ OrganizationSearch.defaultProps = {
 };
 
 OrganizationSearch.propTypes = {
+  buttonProps: PropTypes.shape({
+    marginBottom0: PropTypes.bool,
+  }),
   id: PropTypes.string,
   searchLabel: PropTypes.string,
   searchButtonStyle: PropTypes.string,
