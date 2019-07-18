@@ -55,7 +55,6 @@ class OrganizationSearch extends Component {
               marginBottom0={marginBottom0}
               onClick={this.openModal}
               ariaLabel={ariaLabel}
-              tabIndex="-1"
             >
               {this.props.searchLabel ? this.props.searchLabel : <Icon icon="search" color="#fff" />}
             </Button>
