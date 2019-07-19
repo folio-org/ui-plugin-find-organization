@@ -1,5 +1,11 @@
 # Change history for ui-plugin-find-organization
 
+## [1.3.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.3.0) (2019-07-19)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.2.0...v1.3.0)
+
+* Remove tabIndex
+* [ERM-230](https://issues.folio.org/browse/ERM-230) add buttonProps prop to OrganizationSearch, refs
+
 ## [1.2.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.2.0) (2019-06-11)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.1.0...v1.2.0)
 * [ERM-220](https://issues.folio.org/browse/ERM-220) pass id as prop to organization search;
