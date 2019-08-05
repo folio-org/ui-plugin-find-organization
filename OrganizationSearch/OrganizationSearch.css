@@ -12,6 +12,24 @@
   }
 }
 
+.organizationSearchModalContent {
+  min-height: 400px;
+  padding: 0;
+  position: relative;
+
+  & [class^="mclRowContainer--"] {
+    max-width: 100%;
+
+    & div {
+      max-width: 100%;
+    }
+
+    & [class^="mclCell--"] {
+      word-break: break-word;
+    }
+  }
+}
+
 .organizationSearchModal {
   min-height: 400px;
 }

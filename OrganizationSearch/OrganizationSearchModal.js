@@ -59,6 +59,7 @@ export default class OrganizationSearchModal extends Component {
         size="large"
         open={this.props.openWhen}
         label={<FormattedMessage id="ui-plugin-find-organization.modal.label" />}
+        contentClass={css.organizationSearchModalContent}
         dismissible
       >
         <div className={css.organizationSearchModal}>
