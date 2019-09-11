@@ -1,5 +1,11 @@
 # Change history for ui-plugin-find-organization
 
+## [1.4.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.4.0) (2019-09-11)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.3.0...v1.4.0)
+
+* fetch new translations
+* [UIOR-305](https://issues.folio.org/browse/UIOR-305) Scrolling bug in the PO Vendor lookup
+
 ## [1.3.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.3.0) (2019-07-19)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.2.0...v1.3.0)
 
