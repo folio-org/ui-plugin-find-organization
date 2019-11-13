@@ -54,7 +54,7 @@ class OrganizationSearch extends Component {
               buttonStyle={this.props.searchButtonStyle}
               marginBottom0={marginBottom0}
               onClick={this.openModal}
-              ariaLabel={ariaLabel}
+              aria-label={ariaLabel}
             >
               {this.props.searchLabel ? this.props.searchLabel : <Icon icon="search" color="#fff" />}
             </Button>
@@ -80,7 +80,7 @@ OrganizationSearch.propTypes = {
     marginBottom0: PropTypes.bool,
   }),
   id: PropTypes.string,
-  searchLabel: PropTypes.string,
+  searchLabel: PropTypes.node,
   searchButtonStyle: PropTypes.string,
   marginBottom0: PropTypes.bool,
   marginTop0: PropTypes.bool,
