@@ -1,5 +1,11 @@
 # Change history for ui-plugin-find-organization
 
+## [1.5.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.5.0) (2019-12-04)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.4.0...v1.5.0)
+
+* fetch new translations
+* [UIPFO-3](https://issues.folio.org/browse/UIPFO-3) Update plugin header
+
 ## [1.4.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.4.0) (2019-09-11)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.3.0...v1.4.0)
 
@@ -19,7 +25,7 @@
 ## [1.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.1.0) (2019-05-10)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.0.0...v1.1.0)
 
-* UIORGS-62 Update Vendor plugin modal's second column title
+* [UIORGS-62](https://issues.folio.org/browse/UIORGS-62) Update Vendor plugin modal's second column title
 * fetch new translations
 
 ## [1.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.0.0) (2019-04-26)
