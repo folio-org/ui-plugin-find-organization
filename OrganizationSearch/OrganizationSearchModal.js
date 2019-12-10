@@ -13,6 +13,7 @@ export default class OrganizationSearchModal extends Component {
     }).isRequired,
     selectVendor: PropTypes.func.isRequired,
     closeCB: PropTypes.func.isRequired,
+    modalRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
     onCloseModal: PropTypes.func,
     openWhen: PropTypes.bool,
     dataKey: PropTypes.string,
@@ -29,6 +30,7 @@ export default class OrganizationSearchModal extends Component {
       error: null,
     };
 
+    this.modalRef = props.modalRef || React.createRef();
     this.closeModal = this.closeModal.bind(this);
     this.passVendorOut = this.passVendorOut.bind(this);
   }
@@ -60,6 +62,8 @@ export default class OrganizationSearchModal extends Component {
         open={this.props.openWhen}
         label={<FormattedMessage id="ui-plugin-find-organization.modal.label" />}
         contentClass={css.organizationSearchModalContent}
+        enforceFocus={false}
+        ref={this.modalRef}
         dismissible
       >
         <div className={css.organizationSearchModal}>
