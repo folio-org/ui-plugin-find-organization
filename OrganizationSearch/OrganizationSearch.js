@@ -104,6 +104,7 @@ OrganizationSearch.propTypes = {
     marginBottom0: PropTypes.bool,
   }),
   id: PropTypes.string,
+  renderTrigger: PropTypes.func,
   searchLabel: PropTypes.node,
   searchButtonStyle: PropTypes.string,
   marginBottom0: PropTypes.bool,
