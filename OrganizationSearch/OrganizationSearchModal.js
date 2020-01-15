@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Modal } from '@folio/stripes/components';
 
 import Organizations from './OrganizationsListContainer';
-import packageInfo from '../package';
 import css from './OrganizationSearch.css';
 
 export default class OrganizationSearchModal extends Component {
@@ -16,7 +15,6 @@ export default class OrganizationSearchModal extends Component {
     selectVendor: PropTypes.func.isRequired,
     closeCB: PropTypes.func.isRequired,
     modalRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-    onCloseModal: PropTypes.func,
     openWhen: PropTypes.bool,
     dataKey: PropTypes.string,
   }
@@ -71,12 +69,7 @@ export default class OrganizationSearchModal extends Component {
         <div className={css.organizationSearchModal}>
           {this.state.error ? <div className={css.organizationError}>{this.state.error}</div> : null}
           <this.connectedApp
-            {...this.props}
-            packageInfo={packageInfo}
             onSelectRow={this.passVendorOut}
-            onComponentWillUnmount={this.props.onCloseModal}
-            showSingleResult={false}
-            browseOnly
           />
         </div>
       </Modal>

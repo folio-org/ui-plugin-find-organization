@@ -1,6 +1,6 @@
 # Change history for ui-plugin-find-organization
 
-## [2.0.0](#) (In progress)
+## [1.6.0](#) (In progress)
 
 * [UIORGS-130](https://issues.folio.org/browse/UIORGS-130) remove dependency on ui-organizations, don't use SearchAndQuery.
 
