@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import Organizations from '@folio/organizations/src/Main';
+
 import { Modal } from '@folio/stripes/components';
+
+import Organizations from './OrganizationsListContainer';
 import packageInfo from '../package';
 import css from './OrganizationSearch.css';
 
