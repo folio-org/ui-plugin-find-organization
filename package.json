@@ -13,6 +13,11 @@
   "stripes": {
     "actsAs": ["plugin"],
     "pluginType": "find-organization",
+    "okapiInterfaces": {
+      "configuration": "2.0",
+      "organizations-storage.organizations": "2.1",
+      "tags": "1.0"
+    },
     "displayName": "ui-plugin-find-organization.meta.pluginTitle"
   },
   "scripts": {
@@ -29,13 +34,10 @@
     "eslint-plugin-no-only-tests": "^2.3.0",
     "eslint-plugin-react-hooks": "^2.1.1",
     "react": "^16.5.1",
-    "react-dom": "^16.5.1",
-    "react-intl": "^2.7.2",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "react-intl": "^2.7.2"
   },
   "dependencies": {
-    "@folio/organizations": "^1.2.0",
+    "@folio/stripes-acq-components": "^1.2.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0",
     "dom-helpers":"^3.4.0"
