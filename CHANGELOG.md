@@ -1,5 +1,9 @@
 # Change history for ui-plugin-find-organization
 
+## [2.0.0](#) (In progress)
+
+* [UIORGS-130](https://issues.folio.org/browse/UIORGS-130) remove dependency on ui-organizations, don't use SearchAndQuery.
+
 ## [1.5.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.5.0) (2019-12-04)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.4.0...v1.5.0)
 
