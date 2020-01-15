@@ -38,19 +38,16 @@ const OrganizationsListContainer = ({ mutator, onSelectRow }) => {
   const [organizationsCount, setOrganizationsCount] = useState(0);
   const [organizationsOffset, setOrganizationsOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [
+  const {
     filters,
     searchQuery,
     applyFilters,
     applySearch,
     changeSearch,
     resetFilters,
-    setFilters,
-    setSearchQuery,
-    setSearchIndex,
     searchIndex,
     changeSearchIndex,
-  ] = useFilters(resetData);
+  } = useFilters(resetData);
   const [
     sortingField,
     sortingDirection,
@@ -100,6 +97,7 @@ const OrganizationsListContainer = ({ mutator, onSelectRow }) => {
       setOrganizationsOffset(0);
       loadOrganizations(0);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [filters, sortingField, sortingDirection],
   );
 
@@ -138,6 +136,7 @@ OrganizationsListContainer.manifest = Object.freeze({
   organizationsListOrgs: {
     ...baseManifest,
     accumulate: true,
+    fetch: false,
     path: 'organizations-storage/organizations',
   },
 });

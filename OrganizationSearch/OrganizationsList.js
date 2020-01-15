@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -115,6 +114,17 @@ OrganizationsList.propTypes = {
   isLoading: PropTypes.bool,
   organizations: PropTypes.arrayOf(PropTypes.object),
   onSelectRow: PropTypes.func.isRequired,
+  filters: PropTypes.object.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  applyFilters: PropTypes.func.isRequired,
+  applySearch: PropTypes.func.isRequired,
+  changeSearch: PropTypes.func.isRequired,
+  resetFilters: PropTypes.func.isRequired,
+  searchIndex: PropTypes.string.isRequired,
+  changeSearchIndex: PropTypes.func.isRequired,
+  sortingField: PropTypes.string.isRequired,
+  sortingDirection: PropTypes.string.isRequired,
+  changeSorting: PropTypes.func.isRequired,
 };
 
 OrganizationsList.defaultProps = {
