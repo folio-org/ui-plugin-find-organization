@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@folio/eslint-config-stripes": "^5.0.0",
-    "@folio/stripes": "^2.7.0",
+    "@folio/stripes": "^3.0.0",
     "babel-eslint": "^9.0.0",
     "eslint": "^6.2.1",
     "eslint-plugin-filenames": "^1.3.2",
@@ -41,7 +41,8 @@
     "dom-helpers":"^3.4.0"
   },
   "peerDependencies": {
-    "@folio/stripes": "^2.7.0",
-    "react": "*"
+    "@folio/stripes": "^3.0.0",
+    "react": "*",
+    "react-intl": "^2.7.2"
   }
 }
