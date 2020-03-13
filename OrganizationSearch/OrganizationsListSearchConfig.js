@@ -16,7 +16,7 @@ export const searchableIndexes = [
 ];
 
 export const getKeywordQuery = query => indexes.reduce(
-  (acc, sIndex, idx) => {
+  (acc, sIndex) => {
     if (acc) {
       return `${acc} or ${sIndex}="${query}*"`;
     } else {
