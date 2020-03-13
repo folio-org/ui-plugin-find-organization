@@ -1,8 +1,17 @@
 # Change history for ui-plugin-find-organization
 
-## [1.6.0](#) (In progress)
+## [2.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v2.0.0) (2020-03-13)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.5.0...v2.0.0)
 
+* bump the @folio/stripes peer to v3.0.0
+
+### Stories
+* [FOLIO-2436](https://issues.folio.org/browse/FOLIO-2436) organizations-storage.organizations version
 * [UIORGS-130](https://issues.folio.org/browse/UIORGS-130) remove dependency on ui-organizations, don't use SearchAndQuery.
+* [UIPFO-6](https://issues.folio.org/browse/UIPFO-6) Return focus after lookup modal is closed without selection
+
+### Bug Fixes
+* [UIPFO-7](https://issues.folio.org/browse/UIPFO-7) Security update eslint to >= 6.2.1 or eslint-util >= 1.4.1
 
 ## [1.5.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v1.5.0) (2019-12-04)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.4.0...v1.5.0)
