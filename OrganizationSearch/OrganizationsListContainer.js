@@ -1,13 +1,12 @@
 import React, {
-  useCallback,
   useEffect,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  makeQueryBuilder,
   baseManifest,
+  makeQueryBuilder,
   useFilters,
   useSorting,
 } from '@folio/stripes-acq-components';
@@ -16,9 +15,13 @@ import OrganizationsList from './OrganizationsList';
 import {
   getKeywordQuery,
 } from './OrganizationsListSearchConfig';
+import { FILTERS } from './constants';
 
+const customFilterMap = {
+  [FILTERS.ADDRESS_COUNTRY]: (filterValue) => `${FILTERS.ADDRESS_COUNTRY}=country:${filterValue}`,
+};
 const RESULT_COUNT_INCREMENT = 30;
-const buildTitlesQuery = makeQueryBuilder(
+const buildQuery = makeQueryBuilder(
   'cql.allRecords=1',
   (query, qindex) => {
     if (qindex) {
@@ -28,10 +31,11 @@ const buildTitlesQuery = makeQueryBuilder(
     return getKeywordQuery(query);
   },
   'sortby name/sort.ascending',
+  customFilterMap,
 );
 const sortableFields = ['name', 'code', 'description', 'status', 'isVendor'];
 
-const resetData = () => {};
+const resetData = () => { };
 
 const OrganizationsListContainer = ({ mutator, onSelectRow }) => {
   const [organizations, setOrganizations] = useState([]);
@@ -58,38 +62,37 @@ const OrganizationsListContainer = ({ mutator, onSelectRow }) => {
 
   const loadOrganizations = (offset) => {
     setIsLoading(true);
-
-    return mutator.organizationsListOrgs.GET({
-      params: {
-        limit: RESULT_COUNT_INCREMENT,
-        offset,
-        query: buildTitlesQuery({
-          ...filters,
-          sorting: sortingField,
-          sortingDirection,
-        }),
-      },
-    })
-      .then(organizationsResponse => {
-        if (!offset) setOrganizationsCount(organizationsResponse.totalRecords);
-
-        setOrganizations((prev) => [...prev, ...organizationsResponse.organizations]);
+    const hasToCallAPI = Object.keys(filters).some(key => Boolean(filters[key]));
+    const loadRecordsPromise = hasToCallAPI
+      ? mutator.organizationsListOrgs.GET({
+        params: {
+          limit: RESULT_COUNT_INCREMENT,
+          offset,
+          query: buildQuery({
+            ...filters,
+            sorting: sortingField,
+            sortingDirection,
+          }),
+        },
       })
-      .finally(() => setIsLoading(false));
+        .then(organizationsResponse => {
+          if (!offset) setOrganizationsCount(organizationsResponse.totalRecords);
+
+          setOrganizations((prev) => [...prev, ...organizationsResponse.organizations]);
+        })
+      : Promise.resolve();
+
+    return loadRecordsPromise.finally(() => setIsLoading(false));
   };
 
-  const onNeedMoreData = useCallback(
-    () => {
-      const newOffset = organizationsOffset + RESULT_COUNT_INCREMENT;
+  const onNeedMoreData = () => {
+    const newOffset = organizationsOffset + RESULT_COUNT_INCREMENT;
 
-      loadOrganizations(newOffset)
-        .then(() => {
-          setOrganizationsOffset(newOffset);
-        });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [organizationsOffset],
-  );
+    loadOrganizations(newOffset)
+      .then(() => {
+        setOrganizationsOffset(newOffset);
+      });
+  };
 
   useEffect(
     () => {
