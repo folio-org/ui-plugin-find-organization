@@ -8,8 +8,9 @@ import {
 } from '@folio/stripes/components';
 import {
   FiltersPane,
-  ResultsPane,
+  NoResultsMessage,
   ResetButton,
+  ResultsPane,
   SingleSearchForm,
   useToggle,
 } from '@folio/stripes-acq-components';
@@ -53,11 +54,19 @@ const OrganizationsList = ({
   changeSorting,
 }) => {
   const [isFiltersOpened, toggleFilters] = useToggle(true);
+  const resultsStatusMessage = (
+    <NoResultsMessage
+      isLoading={isLoading}
+      filters={filters}
+      isFiltersOpened={isFiltersOpened}
+      toggleFilters={toggleFilters}
+    />
+  );
 
   return (
     <Paneset data-test-organizations-list>
       {isFiltersOpened && (
-        <FiltersPane>
+        <FiltersPane toggleFilters={toggleFilters}>
           <SingleSearchForm
             applySearch={applySearch}
             changeSearch={changeSearch}
@@ -85,7 +94,8 @@ const OrganizationsList = ({
         title={resultsPaneTitle}
         count={organizationsCount}
         toggleFiltersPane={toggleFilters}
-        filters={!isFiltersOpened ? filters : undefined}
+        filters={filters}
+        isFiltersOpened={isFiltersOpened}
       >
         <MultiColumnList
           id="organizations-list"
@@ -102,6 +112,8 @@ const OrganizationsList = ({
           sortDirection={sortingDirection}
           onHeaderClick={changeSorting}
           onRowClick={onSelectRow}
+          isEmptyMessage={resultsStatusMessage}
+          pagingType="click"
         />
       </ResultsPane>
     </Paneset>

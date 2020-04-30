@@ -1,5 +1,9 @@
 # Change history for ui-plugin-find-organization
 
+## (IN PROGRESS)
+### Bug fixes
+* [UIORGS-151](https://issues.folio.org/browse/UIORGS-151) Organizations is not using the same Expand/Collapse as implemented in Q4 2019
+
 ## [2.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v2.0.0) (2020-03-13)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v1.5.0...v2.0.0)
 
