@@ -62,7 +62,7 @@ const OrganizationsListContainer = ({ mutator, onSelectRow }) => {
 
   const loadOrganizations = (offset) => {
     setIsLoading(true);
-    const hasToCallAPI = Object.keys(filters).some(key => Boolean(filters[key]));
+    const hasToCallAPI = Object.keys(filters).some(key => filters[key] !== undefined);
     const loadRecordsPromise = hasToCallAPI
       ? mutator.organizationsListOrgs.GET({
         params: {
