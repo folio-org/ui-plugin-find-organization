@@ -2,6 +2,7 @@
 
 ## (IN PROGRESS)
 ### Bug fixes
+* [UIPFO-10](https://issues.folio.org/browse/UIPFO-10) ui-plugin-find-organization: Update to Stripes v4
 * [UIORGS-151](https://issues.folio.org/browse/UIORGS-151) Organizations is not using the same Expand/Collapse as implemented in Q4 2019
 
 ## [2.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v2.0.0) (2020-03-13)
