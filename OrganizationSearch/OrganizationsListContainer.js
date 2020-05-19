@@ -9,6 +9,7 @@ import {
   makeQueryBuilder,
   useFilters,
   useSorting,
+  VENDORS_API,
 } from '@folio/stripes-acq-components';
 
 import OrganizationsList from './OrganizationsList';
@@ -140,7 +141,7 @@ OrganizationsListContainer.manifest = Object.freeze({
     ...baseManifest,
     accumulate: true,
     fetch: false,
-    path: 'organizations-storage/organizations',
+    path: VENDORS_API,
   },
 });
 

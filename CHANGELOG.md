@@ -1,6 +1,9 @@
 # Change history for ui-plugin-find-organization
 
 ## (IN PROGRESS)
+### Stories
+* [UIORGS-178](https://issues.folio.org/browse/UIORGS-178) Redirect API calls from mod-organizations-storage to mod-organzations
+
 ### Bug fixes
 * [UIPFO-10](https://issues.folio.org/browse/UIPFO-10) ui-plugin-find-organization: Update to Stripes v4
 * [UIORGS-151](https://issues.folio.org/browse/UIORGS-151) Organizations is not using the same Expand/Collapse as implemented in Q4 2019

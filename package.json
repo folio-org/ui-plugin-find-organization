@@ -15,7 +15,7 @@
     "pluginType": "find-organization",
     "okapiInterfaces": {
       "configuration": "2.0",
-      "organizations-storage.organizations": "3.0",
+      "organizations.organizations": "1.0",
       "tags": "1.0"
     },
     "displayName": "ui-plugin-find-organization.meta.pluginTitle"
