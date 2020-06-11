@@ -1,8 +1,13 @@
 # Change history for ui-plugin-find-organization
 
 ## (IN PROGRESS)
+
+## [2.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v2.1.0) (2020-06-11)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v2.0.0...v2.1.0)
+
 ### Stories
-* [UIORGS-178](https://issues.folio.org/browse/UIORGS-178) Redirect API calls from mod-organizations-storage to mod-organzations
+* [UIPFO-10](https://issues.folio.org/browse/UIPFO-10) Update to Stripes v4
+* [UIORGS-178](https://issues.folio.org/browse/UIORGS-178) Redirect API calls from mod-organizations-storage to mod-organizations
 
 ### Bug fixes
 * [UIPFO-10](https://issues.folio.org/browse/UIPFO-10) ui-plugin-find-organization: Update to Stripes v4
