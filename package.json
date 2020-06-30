@@ -18,6 +18,9 @@
       "organizations.organizations": "1.0",
       "tags": "1.0"
     },
+    "stripesDeps": [
+      "@folio/stripes-acq-components"
+    ],
     "displayName": "ui-plugin-find-organization.meta.pluginTitle"
   },
   "scripts": {
@@ -40,9 +43,7 @@
     "prop-types": "^15.6.0",
     "dom-helpers":"^3.4.0"
   },
-  "stripesDeps": [
-    "@folio/stripes-acq-components"
-  ],
+
   "peerDependencies": {
     "@folio/stripes": "^4.0.0",
     "react": "*",
