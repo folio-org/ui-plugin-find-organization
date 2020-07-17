@@ -3,6 +3,7 @@
 ## (IN PROGRESS)
 
 ### Stories
+* upgrade to stripes v5
 * [UISACQCOMP-3](https://issues.folio.org/browse/UISACQCOMP-3) Handle import of stripes-acq-components to modules and platform
 
 ## [2.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v2.1.0) (2020-06-11)
