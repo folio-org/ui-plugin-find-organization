@@ -19,6 +19,7 @@
       "tags": "1.0"
     },
     "stripesDeps": [
+      "@folio/organizations",
       "@folio/stripes-acq-components"
     ],
     "displayName": "ui-plugin-find-organization.meta.pluginTitle"
