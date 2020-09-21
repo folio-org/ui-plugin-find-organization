@@ -64,7 +64,10 @@ const OrganizationsList = ({
   );
 
   return (
-    <Paneset data-test-organizations-list>
+    <Paneset
+      data-test-organizations-list
+      isRoot
+    >
       {isFiltersOpened && (
         <FiltersPane toggleFilters={toggleFilters}>
           <SingleSearchForm
