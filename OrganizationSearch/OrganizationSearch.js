@@ -62,7 +62,7 @@ class OrganizationSearch extends Component {
   }
 
   render() {
-    const { id, buttonProps: { marginBottom0 }, renderTrigger } = this.props;
+    const { disabled, id, buttonProps: { marginBottom0 }, renderTrigger } = this.props;
 
     return (
       <div className={this.getStyle()}>
@@ -77,6 +77,7 @@ class OrganizationSearch extends Component {
                 marginBottom0={marginBottom0}
                 onClick={this.openModal}
                 aria-label={ariaLabel}
+                disabled={disabled}
               >
                 {this.props.searchLabel ? this.props.searchLabel : <Icon icon="search" color="#fff" />}
               </Button>
@@ -103,6 +104,7 @@ OrganizationSearch.propTypes = {
   buttonProps: PropTypes.shape({
     marginBottom0: PropTypes.bool,
   }),
+  disabled: PropTypes.bool,
   id: PropTypes.string,
   renderTrigger: PropTypes.func,
   searchLabel: PropTypes.node,
