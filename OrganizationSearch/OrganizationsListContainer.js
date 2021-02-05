@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import {
   baseManifest,
+  buildArrayFieldQuery,
   makeQueryBuilder,
   useFilters,
   useSorting,
@@ -20,6 +21,8 @@ import { FILTERS } from './constants';
 
 const customFilterMap = {
   [FILTERS.ADDRESS_COUNTRY]: (filterValue) => `${FILTERS.ADDRESS_COUNTRY}=country:${filterValue}`,
+  [FILTERS.ACQUISITIONS_UNIT]: buildArrayFieldQuery.bind(null, [FILTERS.ACQUISITIONS_UNIT]),
+  [FILTERS.TAGS]: buildArrayFieldQuery.bind(null, [FILTERS.TAGS]),
 };
 const RESULT_COUNT_INCREMENT = 30;
 const buildQuery = makeQueryBuilder(
