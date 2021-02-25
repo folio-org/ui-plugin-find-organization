@@ -57,6 +57,7 @@ const OrganizationsListFilter = ({
       />
 
       <CountryFilter
+        id="plugin-country-filter"
         activeFilters={activeFilters[FILTERS.ADDRESS_COUNTRY]}
         labelId="ui-organizations.filterConfig.country"
         name={FILTERS.ADDRESS_COUNTRY}
@@ -64,6 +65,7 @@ const OrganizationsListFilter = ({
       />
 
       <LanguageFilter
+        id="plugin-language-filter"
         activeFilters={activeFilters[FILTERS.LANGUAGE]}
         labelId="ui-organizations.filterConfig.languages"
         name={FILTERS.LANGUAGE}

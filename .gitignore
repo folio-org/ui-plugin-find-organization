@@ -1,2 +1,9 @@
+# dependencies
 /node_modules
+
+# Lockfiles
 yarn.lock
+
+# tests
+/artifacts
+junit.xml
