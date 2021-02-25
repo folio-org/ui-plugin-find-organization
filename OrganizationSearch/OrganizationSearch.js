@@ -72,6 +72,7 @@ class OrganizationSearch extends Component {
             {ariaLabel => (
               <Button
                 id={id}
+                data-testid="open-organization-seach-modal-button"
                 key="searchButton"
                 buttonStyle={this.props.searchButtonStyle}
                 marginBottom0={marginBottom0}
