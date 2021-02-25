@@ -22,7 +22,7 @@ jest.mock('react-virtualized-auto-sizer/dist/index.cjs', () => {
 
 const generateOrgs = () => ({
   name: `${faker.company.companyName()}`,
-  isVendor: true,
+  isVendor: faker.random.boolean(),
   status: 'Active',
 });
 

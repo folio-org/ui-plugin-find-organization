@@ -5,16 +5,36 @@ import user from '@testing-library/user-event';
 import OrganizationSearchModal from './OrganizationSearchModal';
 
 jest.mock('./OrganizationsListContainer', () => {
-  return () => <span>OrganizationsListContainer</span>;
+  // eslint-disable-next-line react/prop-types
+  return ({ onSelectRow }) => (
+    <>
+      <button
+        type="button"
+        onClick={() => onSelectRow({}, {})}
+      >
+        SelectVendor
+      </button>
+      <button
+        type="button"
+        onClick={() => onSelectRow({}, { error: 'Error' })}
+      >
+        SelectVendorWithError
+      </button>
+    </>
+  );
 });
+
+const onCloseCB = jest.fn();
+const onSelectVendor = jest.fn();
 
 const renderOrganizationSearchModal = (
   openWhen = true,
-  closeCB = jest.fn(),
+  closeCB = onCloseCB,
+  selectVendor = onSelectVendor,
 ) => (render(
   <OrganizationSearchModal
     stripes={{ connect: component => component }}
-    selectVendor={jest.fn}
+    selectVendor={selectVendor}
     closeCB={closeCB}
     openWhen={openWhen}
   />,
@@ -35,13 +55,31 @@ describe('OrganizationSearchModal component', () => {
 
   describe('Close organization search modal', () => {
     it('should close organization search modal', () => {
-      const closeCB = jest.fn();
-
-      const { getByText } = renderOrganizationSearchModal(true, closeCB);
+      const { getByText } = renderOrganizationSearchModal(true, onCloseCB);
 
       user.click(getByText('Icon'));
 
-      expect(closeCB).toHaveBeenCalled();
+      expect(onCloseCB).toHaveBeenCalled();
+    });
+  });
+
+  describe('Select organization', () => {
+    it('should select organization and close modal', () => {
+      const { getByText } = renderOrganizationSearchModal(true, onCloseCB, onSelectVendor);
+
+      user.click(getByText('SelectVendor'));
+
+      expect(onSelectVendor).toHaveBeenCalled();
+      expect(onCloseCB).toHaveBeenCalled();
+    });
+
+    it('should select organization with error', () => {
+      const { getByText } = renderOrganizationSearchModal(true, onCloseCB, onSelectVendor);
+
+      user.click(getByText('SelectVendorWithError'));
+
+      expect(onSelectVendor).toHaveBeenCalled();
+      expect(getByText('Error')).toBeDefined();
     });
   });
 });
