@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, act, screen } from '@testing-library/react';
+import { render, act, screen, waitFor } from '@testing-library/react';
 import user from '@testing-library/user-event';
 
 import OrganizationsListContainer from './OrganizationsListContainer';
@@ -41,9 +41,9 @@ describe('OrganizationsListContainer component', () => {
   });
 
   it('should not fetch organizations since filters were not applied', async () => {
-    await act(async () => {
-      renderOrganizationsListContainer(mutator);
+    renderOrganizationsListContainer(mutator);
 
+    await waitFor(() => {
       user.click(screen.getByText('OnNeedMoreData'));
     });
 
@@ -51,9 +51,9 @@ describe('OrganizationsListContainer component', () => {
   });
 
   it('should fetch organizations with applied Status filter', async () => {
-    await act(async () => {
-      renderOrganizationsListContainer(mutator);
+    renderOrganizationsListContainer(mutator);
 
+    await waitFor(() => {
       user.click(screen.getByText('applyFilters'));
     });
 
