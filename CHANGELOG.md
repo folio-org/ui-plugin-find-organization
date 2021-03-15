@@ -2,6 +2,10 @@
 
 ## (IN PROGRESS)
 
+## [2.3.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v2.3.0) (2021-03-15)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v2.2.0...v2.3.0)
+
+* upgrade stripes v6.
 * UI tests replacement with RTL/Jest. Refs FAT-42.
 * Add personal data disclosure form. Refs UIPFO-16.
 
