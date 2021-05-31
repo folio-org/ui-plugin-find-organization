@@ -22,13 +22,13 @@ describe('OrganizationSearch component', () => {
   it('should display search organization button', () => {
     const { getByTestId } = renderOrganizationSearch();
 
-    expect(getByTestId('open-organization-seach-modal-button')).toBeDefined();
+    expect(getByTestId('open-organization-search-modal-button')).toBeDefined();
   });
 
   it('should display disabled search organization button', () => {
     const { getByTestId } = renderOrganizationSearch(true);
 
-    expect(getByTestId('open-organization-seach-modal-button')).toBeDisabled();
+    expect(getByTestId('open-organization-search-modal-button')).toBeDisabled();
   });
 
   it('should render trigger button', () => {
@@ -42,7 +42,7 @@ describe('OrganizationSearch component', () => {
   it('should open organization search modal', () => {
     const { getByText, getByTestId } = renderOrganizationSearch();
 
-    user.click(getByTestId('open-organization-seach-modal-button'));
+    user.click(getByTestId('open-organization-search-modal-button'));
 
     expect(getByText('OrganizationSearchModal')).toBeDefined();
   });
