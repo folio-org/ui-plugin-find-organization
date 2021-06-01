@@ -1,7 +1,7 @@
-const commonCofig = require('@folio/stripes-acq-components/jest.config');
+const commonConfig = require('@folio/stripes-acq-components/jest.config');
 
 module.exports = {
-  ...commonCofig,
+  ...commonConfig,
   testMatch: ['**/OrganizationSearch/?(*.)test.{js,jsx}'],
   coverageDirectory: './artifacts/coverage-jest/',
   collectCoverageFrom: [
