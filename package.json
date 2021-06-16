@@ -1,6 +1,6 @@
 {
   "name": "@folio/plugin-find-organization",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "Organization-finder for Stripes",
   "repository": "folio-org/ui-plugin-find-organization",
   "publishConfig": {
@@ -59,7 +59,7 @@
     "react-router-dom": "^5.2.0"
   },
   "dependencies": {
-    "@folio/stripes-acq-components": "~2.3.0",
+    "@folio/stripes-acq-components": "~2.4.0",
     "classnames": "^2.2.5",
     "dom-helpers": "^3.4.0",
     "prop-types": "^15.6.0"
