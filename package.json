@@ -28,7 +28,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest --ci --coverage",
-    "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-plugin-find-organization ./translations/ui-plugin-find-organization/compiled"
+    "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-plugin-find-organization ./translations/ui-plugin-find-organization/compiled",
+    "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.0.0",
