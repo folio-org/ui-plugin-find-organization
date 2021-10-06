@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.0.0) (2021-10-06)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v2.4.1...v3.0.0)
+
 * increment stripes to v7. Refs UIPFO-21.
 
 ## [2.4.1](https://github.com/folio-org/ui-plugin-find-organization/tree/v2.4.1) (2021-06-16)
