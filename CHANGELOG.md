@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.1.0) (2022-03-01)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.0.0...v3.1.0)
+
 ## [3.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.0.0) (2021-10-06)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v2.4.1...v3.0.0)
 
