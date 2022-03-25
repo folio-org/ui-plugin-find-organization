@@ -99,6 +99,7 @@ const OrganizationsList = ({
         toggleFiltersPane={toggleFilters}
         filters={filters}
         isFiltersOpened={isFiltersOpened}
+        isLoading={isLoading}
       >
         <MultiColumnList
           id="organizations-list"
