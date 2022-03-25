@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* Select filter should announce the number of Results in the Results List pane header. Refs UIPFO-27.
+
 ## [3.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.1.0) (2022-03-01)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.0.0...v3.1.0)
 

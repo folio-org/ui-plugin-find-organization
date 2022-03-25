@@ -75,9 +75,9 @@ describe('OrganizationsList component', () => {
   });
 
   it('should display no results message', () => {
-    const { getByText } = renderOrganizationsList([], 0);
+    const { queryAllByText } = renderOrganizationsList([], 0);
 
-    expect(getByText('stripes-smart-components.sas.noResults.noTerms')).toBeDefined();
+    expect(queryAllByText('stripes-smart-components.sas.noResults.noTerms')).toBeDefined();
   });
 
   describe('Select organization', () => {
