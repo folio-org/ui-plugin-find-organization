@@ -1,6 +1,8 @@
 # Change history for ui-plugin-find-organization
 
-## (IN PROGRESS)
+## (IN PROGRESS)x
+
+* Backport recent zh_TW translations. Refs UIPFO-31.
 
 ## [3.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.1.0) (2022-03-01)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.0.0...v3.1.0)
