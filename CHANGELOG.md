@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.2.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.2.0) (2022-07-07)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.1.0...v3.2.0)
+
 * Select filter should announce the number of Results in the Results List pane header. Refs UIPFO-27.
 * Replace `babel-eslint` with `@babel/eslint-parser`. Refs UIPFO-28.
 
