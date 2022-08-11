@@ -2,6 +2,8 @@
 
 ## (IN PROGRESS)
 
+* Select an Organization - Implement MCL Next/Previous pagination. Refs UIPFO-33.
+
 ## [3.2.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.2.0) (2022-07-07)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.1.0...v3.2.0)
 

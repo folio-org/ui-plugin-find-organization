@@ -17,7 +17,7 @@ import {
   FILTERS,
   BOOLEAN_OPTIONS,
   STATUS_OPTIONS,
-} from './constants';
+} from '../constants';
 
 const applyFiltersAdapter = (applyFilters) => ({ name, values }) => applyFilters(name, values);
 
