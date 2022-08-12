@@ -31,10 +31,10 @@ export const STATUS_OPTIONS = Object.values(ORGANIZATION_STATUS).map(status => (
 export const BOOLEAN_OPTIONS = [
   {
     value: 'true',
-    label: <FormattedMessage id="ui-organizations.filterConfig.boolean.true" />,
+    label: <FormattedMessage id="stripes-acq-components.filter.true" />,
   },
   {
     value: 'false',
-    label: <FormattedMessage id="ui-organizations.filterConfig.boolean.false" />,
+    label: <FormattedMessage id="stripes-acq-components.filter.false" />,
   },
 ];
