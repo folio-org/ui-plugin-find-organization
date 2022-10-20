@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [3.3.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.3.0) (2022-10-21)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.2.0...v3.3.0)
+
 * Select an Organization - Implement MCL Next/Previous pagination. Refs UIPFO-33.
 * Use defined constant as value of limit param in unit tests. Refs UIPFO-35.
 
