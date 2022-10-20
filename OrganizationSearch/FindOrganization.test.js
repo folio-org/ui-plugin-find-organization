@@ -1,7 +1,10 @@
 import React from 'react';
 import { render, act } from '@testing-library/react';
 
-import { FindRecords } from '@folio/stripes-acq-components';
+import {
+  FindRecords,
+  PLUGIN_RESULT_COUNT_INCREMENT,
+} from '@folio/stripes-acq-components';
 
 import { useOrganizations } from './hooks';
 import { FindOrganization } from './FindOrganization';
@@ -42,7 +45,11 @@ describe('FindOrganization component', () => {
 
     await act(async () => FindRecords.mock.calls[0][0].refreshRecords(filters));
 
-    expect(fetchOrganizationsMock).toHaveBeenCalledWith({ limit: 30, offset: 0, searchParams: filters });
+    expect(fetchOrganizationsMock).toHaveBeenCalledWith({
+      limit: PLUGIN_RESULT_COUNT_INCREMENT,
+      offset: 0,
+      searchParams: filters,
+    });
   });
 
   it('should call fetchOrganizations when onNeedMoreData is called', async () => {
@@ -51,8 +58,15 @@ describe('FindOrganization component', () => {
     useOrganizations.mockClear().mockReturnValue({ fetchOrganizations: fetchOrganizationsMock });
     renderFindOrganization();
 
-    await act(async () => FindRecords.mock.calls[0][0].onNeedMoreData({ limit: 30, offset: 1 }));
+    await act(async () => FindRecords.mock.calls[0][0].onNeedMoreData({
+      limit: PLUGIN_RESULT_COUNT_INCREMENT,
+      offset: 1,
+    }));
 
-    expect(fetchOrganizationsMock).toHaveBeenCalledWith({ limit: 30, offset: 1, searchParams: {} });
+    expect(fetchOrganizationsMock).toHaveBeenCalledWith({
+      limit: PLUGIN_RESULT_COUNT_INCREMENT,
+      offset: 1,
+      searchParams: {},
+    });
   });
 });
