@@ -2,6 +2,9 @@
 
 ## (IN PROGRESS)
 
+## [4.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v4.0.0) (2023-02-16)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.3.0...v4.0.0)
+
 * *BREAKING*: Update `@folio/stripes` to `8.0.0`. Refs UIPFO-36.
 
 ## [3.3.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v3.3.0) (2022-10-21)
