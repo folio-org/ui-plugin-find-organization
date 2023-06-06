@@ -14,7 +14,7 @@ const queryClient = new QueryClient();
 
 const defaultProps = {
   activeFilters: [],
-  closedByDefault: false,
+  closedByDefault: true,
   disabled: false,
   id: 'types-filter',
   name: 'organizationTypes',
