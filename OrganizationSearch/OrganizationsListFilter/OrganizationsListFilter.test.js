@@ -1,7 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
+import { organizationTypes } from '../../test/jest/fixtures';
+import { useTypes } from '../hooks';
 import OrganizationsListFilter from './OrganizationsListFilter';
+
+jest.mock('../hooks', () => ({
+  ...jest.requireActual('../hooks'),
+  useTypes: jest.fn(),
+}));
 
 const renderOrganizationsListFilter = () => (render(
   <OrganizationsListFilter
@@ -11,6 +18,10 @@ const renderOrganizationsListFilter = () => (render(
 ));
 
 describe('OrganizationsListFilter component', () => {
+  beforeEach(() => {
+    useTypes.mockClear().mockReturnValue({ organizationTypes });
+  });
+
   it('should display filters', () => {
     const { getByText } = renderOrganizationsListFilter();
 
