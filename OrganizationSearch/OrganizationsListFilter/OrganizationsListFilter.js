@@ -8,6 +8,7 @@ import {
 import {
   AcqCheckboxFilter,
   AcqTagsFilter,
+  AcqUnitFilter,
   CountryFilter,
   LanguageFilter,
   PAYMENT_METHOD_OPTIONS,
@@ -18,12 +19,14 @@ import {
   BOOLEAN_OPTIONS,
   STATUS_OPTIONS,
 } from '../constants';
+import { TypeFilter } from './TypeFilter';
 
 const applyFiltersAdapter = (applyFilters) => ({ name, values }) => applyFilters(name, values);
 
 const OrganizationsListFilter = ({
   activeFilters,
   applyFilters,
+  disabled,
 }) => {
   const adaptedApplyFilters = useCallback(
     applyFiltersAdapter(applyFilters),
@@ -34,6 +37,7 @@ const OrganizationsListFilter = ({
     <AccordionSet>
       <AcqCheckboxFilter
         activeFilters={activeFilters[FILTERS.STATUS]}
+        disabled={disabled}
         labelId="ui-organizations.filterConfig.vendorStatus"
         name={FILTERS.STATUS}
         onChange={adaptedApplyFilters}
@@ -41,8 +45,17 @@ const OrganizationsListFilter = ({
         closedByDefault={false}
       />
 
+      <TypeFilter
+        activeFilters={activeFilters[FILTERS.TYPES]}
+        disabled={disabled}
+        id={`org-filter-${FILTERS.TYPES}`}
+        name={FILTERS.TYPES}
+        onChange={adaptedApplyFilters}
+      />
+
       <AcqTagsFilter
         activeFilters={activeFilters[FILTERS.TAGS]}
+        disabled={disabled}
         id={FILTERS.TAGS}
         name={FILTERS.TAGS}
         onChange={adaptedApplyFilters}
@@ -50,6 +63,7 @@ const OrganizationsListFilter = ({
 
       <AcqCheckboxFilter
         activeFilters={activeFilters[FILTERS.IS_VENDOR]}
+        disabled={disabled}
         labelId="ui-organizations.filterConfig.isVendor"
         name={FILTERS.IS_VENDOR}
         onChange={adaptedApplyFilters}
@@ -59,6 +73,7 @@ const OrganizationsListFilter = ({
       <CountryFilter
         id="plugin-country-filter"
         activeFilters={activeFilters[FILTERS.ADDRESS_COUNTRY]}
+        disabled={disabled}
         labelId="ui-organizations.filterConfig.country"
         name={FILTERS.ADDRESS_COUNTRY}
         onChange={adaptedApplyFilters}
@@ -67,6 +82,7 @@ const OrganizationsListFilter = ({
       <LanguageFilter
         id="plugin-language-filter"
         activeFilters={activeFilters[FILTERS.LANGUAGE]}
+        disabled={disabled}
         labelId="ui-organizations.filterConfig.languages"
         name={FILTERS.LANGUAGE}
         onChange={adaptedApplyFilters}
@@ -74,12 +90,20 @@ const OrganizationsListFilter = ({
 
       <AcqCheckboxFilter
         activeFilters={activeFilters[FILTERS.PAYMENT_METHOD]}
+        disabled={disabled}
         labelId="ui-organizations.filterConfig.paymentMethod"
         name={FILTERS.PAYMENT_METHOD}
         onChange={adaptedApplyFilters}
         options={PAYMENT_METHOD_OPTIONS}
       />
 
+      <AcqUnitFilter
+        id={`org-filter-${FILTERS.ACQUISITIONS_UNIT}`}
+        activeFilters={activeFilters[FILTERS.ACQUISITIONS_UNIT]}
+        disabled={disabled}
+        name={FILTERS.ACQUISITIONS_UNIT}
+        onChange={adaptedApplyFilters}
+      />
     </AccordionSet>
   );
 };
@@ -87,6 +111,7 @@ const OrganizationsListFilter = ({
 OrganizationsListFilter.propTypes = {
   activeFilters: PropTypes.object.isRequired,
   applyFilters: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default OrganizationsListFilter;

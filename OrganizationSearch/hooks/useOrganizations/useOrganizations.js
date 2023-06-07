@@ -4,7 +4,6 @@ import {
   useOkapiKy,
 } from '@folio/stripes/core';
 import {
-  buildArrayFieldQuery,
   getFiltersCount,
   makeQueryBuilder,
   PLUGIN_RESULT_COUNT_INCREMENT,
@@ -12,9 +11,9 @@ import {
 } from '@folio/stripes-acq-components';
 
 import {
+  filterMap,
   getKeywordQuery,
 } from '../../OrganizationsSearchConfig';
-import { FILTERS } from '../../constants';
 
 const buildQuery = makeQueryBuilder(
   'cql.allRecords=1',
@@ -26,11 +25,7 @@ const buildQuery = makeQueryBuilder(
     return `(${getKeywordQuery(query)})`;
   },
   'sortby name/sort.ascending',
-  {
-    [FILTERS.ADDRESS_COUNTRY]: (filterValue) => `${FILTERS.ADDRESS_COUNTRY}=country:${filterValue}`,
-    [FILTERS.ACQUISITIONS_UNIT]: buildArrayFieldQuery.bind(null, [FILTERS.ACQUISITIONS_UNIT]),
-    [FILTERS.TAGS]: buildArrayFieldQuery.bind(null, [FILTERS.TAGS]),
-  },
+  filterMap,
 );
 
 export const useOrganizations = () => {

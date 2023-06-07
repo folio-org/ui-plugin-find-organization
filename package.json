@@ -70,6 +70,7 @@
     "@folio/stripes": "^8.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-intl": "^5.8.1"
+    "react-intl": "^5.8.1",
+    "react-query": "^3.39.0"
   }
 }
