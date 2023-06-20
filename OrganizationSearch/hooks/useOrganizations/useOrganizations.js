@@ -1,3 +1,4 @@
+import { parse, stringify } from 'query-string';
 import { useCallback } from 'react';
 
 import {
@@ -36,8 +37,9 @@ export const useOrganizations = () => {
     offset = 0,
     limit = PLUGIN_RESULT_COUNT_INCREMENT,
   }) => {
-    const query = buildQuery(searchParams);
-    const filtersCount = getFiltersCount(searchParams);
+    const queryParams = parse(stringify(searchParams));
+    const query = buildQuery(queryParams);
+    const filtersCount = getFiltersCount(queryParams);
 
     if (!filtersCount) {
       return { organizations: [], totalRecords: 0 };

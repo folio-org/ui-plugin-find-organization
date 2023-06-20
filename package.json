@@ -64,7 +64,8 @@
     "@folio/stripes-acq-components": "~4.0.0",
     "classnames": "^2.2.5",
     "dom-helpers": "^3.4.0",
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.6.0",
+    "query-string": "^6.1.0"
   },
   "peerDependencies": {
     "@folio/stripes": "^8.0.0",
