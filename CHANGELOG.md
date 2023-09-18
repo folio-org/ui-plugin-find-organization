@@ -3,6 +3,7 @@
 ## (IN PROGRESS)
 
 * Consistency of organizations filters with `ui-organizations`. Refs UIPFO-37.
+* Upgrade `Node.js` to `18` version in GitHub Actions. Refs UIPFO-41.
 
 ## [4.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v4.0.0) (2023-02-17)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.3.0...v4.0.0)
