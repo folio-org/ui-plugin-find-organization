@@ -1,9 +1,9 @@
-import { renderHook } from '@testing-library/react-hooks';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+import { renderHook, waitFor } from '@folio/jest-config-stripes/testing-library/react';
 import { useOkapiKy } from '@folio/stripes/core';
 
-import { organizationTypes } from '../../../test/jest/fixtures';
+import { organizationTypes } from 'fixtures';
 import { useTypes } from './useTypes';
 
 const queryClient = new QueryClient();
@@ -29,9 +29,9 @@ describe('useTypes', () => {
   });
 
   it('should fetch all organization types', async () => {
-    const { result, waitFor } = renderHook(() => useTypes(), { wrapper });
+    const { result } = renderHook(() => useTypes(), { wrapper });
 
-    await waitFor(() => !result.current.isLoading);
+    await waitFor(() => expect(result.current.isLoading).toBeFalsy());
 
     expect(result.current.organizationTypes).toEqual([MOCK_TYPES]);
   });

@@ -1,7 +1,6 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '@folio/jest-config-stripes/testing-library/react';
 
-import { organizationTypes } from '../../test/jest/fixtures';
+import { organizationTypes } from 'fixtures';
 import { useTypes } from '../hooks';
 import OrganizationsListFilter from './OrganizationsListFilter';
 
