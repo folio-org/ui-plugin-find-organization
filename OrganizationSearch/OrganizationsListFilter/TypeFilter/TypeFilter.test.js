@@ -1,7 +1,8 @@
-import { screen, render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { organizationTypes } from '../../../test/jest/fixtures';
+import { screen, render } from '@folio/jest-config-stripes/testing-library/react';
+
+import { organizationTypes } from 'fixtures';
 import { useTypes } from '../../hooks';
 import { TypeFilter } from './TypeFilter';
 

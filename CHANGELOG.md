@@ -1,10 +1,11 @@
 # Change history for ui-plugin-find-organization
 
-## (IN PROGRESS)
+## (5.0.0 IN PROGRESS)
 
 * Consistency of organizations filters with `ui-organizations`. Refs UIPFO-37.
 * Upgrade `Node.js` to `18` version in GitHub Actions. Refs UIPFO-41.
-* *BREAKING* bump `react-intl` to `v6.4.4`. Refs UIPFO-42.
+* *BREAKING*: Upgrade `React` to `18` version. Refs UIPFO-40.
+* *BREAKING*: bump `react-intl` to `v6.4.4`. Refs UIPFO-42.
 
 ## [4.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v4.0.0) (2023-02-17)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v3.3.0...v4.0.0)
