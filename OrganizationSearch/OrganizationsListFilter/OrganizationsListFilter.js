@@ -62,19 +62,19 @@ const OrganizationsListFilter = ({
       />
 
       <AcqCheckboxFilter
-        activeFilters={activeFilters[FILTERS.IS_VENDOR]}
+        activeFilters={activeFilters[FILTERS.IS_DONOR]}
         disabled={disabled}
-        labelId="ui-organizations.filterConfig.isVendor"
-        name={FILTERS.IS_VENDOR}
+        labelId="ui-organizations.filterConfig.isDonor"
+        name={FILTERS.IS_DONOR}
         onChange={adaptedApplyFilters}
         options={BOOLEAN_OPTIONS}
       />
 
       <AcqCheckboxFilter
-        activeFilters={activeFilters[FILTERS.IS_DONOR]}
+        activeFilters={activeFilters[FILTERS.IS_VENDOR]}
         disabled={disabled}
-        labelId="ui-organizations.filterConfig.isDonor"
-        name={FILTERS.IS_DONOR}
+        labelId="ui-organizations.filterConfig.isVendor"
+        name={FILTERS.IS_VENDOR}
         onChange={adaptedApplyFilters}
         options={BOOLEAN_OPTIONS}
       />
