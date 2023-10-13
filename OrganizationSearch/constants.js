@@ -17,6 +17,7 @@ export const FILTERS = {
   ACQUISITIONS_UNIT: 'acqUnitIds',
   ADDRESS_COUNTRY: 'addresses',
   IS_VENDOR: 'isVendor',
+  IS_DONOR: 'isDonor',
   LANGUAGE: 'language',
   PAYMENT_METHOD: 'paymentMethod',
   STATUS: 'status',

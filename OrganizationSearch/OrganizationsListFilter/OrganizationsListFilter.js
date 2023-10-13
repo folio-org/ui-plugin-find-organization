@@ -70,6 +70,15 @@ const OrganizationsListFilter = ({
         options={BOOLEAN_OPTIONS}
       />
 
+      <AcqCheckboxFilter
+        activeFilters={activeFilters[FILTERS.IS_DONOR]}
+        disabled={disabled}
+        labelId="ui-organizations.filterConfig.isDonor"
+        name={FILTERS.IS_DONOR}
+        onChange={adaptedApplyFilters}
+        options={BOOLEAN_OPTIONS}
+      />
+
       <CountryFilter
         id="plugin-country-filter"
         activeFilters={activeFilters[FILTERS.ADDRESS_COUNTRY]}
