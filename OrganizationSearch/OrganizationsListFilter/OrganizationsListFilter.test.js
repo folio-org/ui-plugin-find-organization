@@ -26,6 +26,7 @@ describe('OrganizationsListFilter component', () => {
 
     expect(getByText('ui-organizations.filterConfig.vendorStatus')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
+    expect(getByText('ui-organizations.filterConfig.isDonor')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.country')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.languages')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.paymentMethod')).toBeDefined();

@@ -2,6 +2,8 @@
 
 ## (5.1.0 IN PROGRESS)
 
+* Add the "Is Donor" filter selectable options for filters pane. Refs UIPFO-44.
+
 ## [5.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v5.0.0) (2023-10-12)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v4.0.0...v5.0.0)
 
