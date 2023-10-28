@@ -1,4 +1,4 @@
-import { queryByText, render } from '@folio/jest-config-stripes/testing-library/react';
+import { render } from '@folio/jest-config-stripes/testing-library/react';
 
 import { organizationTypes } from 'fixtures';
 import { useTypes } from '../hooks';
@@ -23,9 +23,9 @@ describe('OrganizationsListFilter component', () => {
   });
 
   it('should display filters', () => {
-    const { getByText } = renderOrganizationsListFilter();
+    const { getByText } = renderOrganizationsListFilter({ isDonorsEnabled: false });
 
-    expect(getByText('ui-organizations.filterConfig.vendorStatus')).toBeDefined();
+    expect(getByText('ui-organizations.filterConfig.organizationStatus')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isDonor')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.country')).toBeDefined();
@@ -34,15 +34,16 @@ describe('OrganizationsListFilter component', () => {
   });
 
   it('should display donor-related filters', () => {
-    const { getByText } = renderOrganizationsListFilter({ isDonorsEnabled: true });
+    const { getByText, queryByText } = renderOrganizationsListFilter({ isDonorsEnabled: true });
 
-    expect(queryByText('ui-organizations.filterConfig.vendorStatus')).not.toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.tags')).toBeDefined();
-    expect(queryByText('ui-organizations.filterConfig.types')).not.toBeDefined();
+    expect(getByText('stripes-acq-components.filter.tags')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
-    expect(queryByText('ui-organizations.filterConfig.isDonor')).not.toBeDefined();
-    expect(queryByText('ui-organizations.filterConfig.country')).not.toBeDefined();
-    expect(queryByText('ui-organizations.filterConfig.languages')).not.toBeDefined();
-    expect(queryByText('ui-organizations.filterConfig.paymentMethod')).not.toBeDefined();
+    expect(getByText('ui-organizations.filterConfig.types')).toBeDefined();
+
+    expect(queryByText('ui-organizations.filterConfig.organizationStatus')).toBeNull();
+    expect(queryByText('ui-organizations.filterConfig.isDonor')).toBeNull();
+    expect(queryByText('ui-organizations.filterConfig.country')).toBeNull();
+    expect(queryByText('ui-organizations.filterConfig.languages')).toBeNull();
+    expect(queryByText('ui-organizations.filterConfig.paymentMethod')).toBeNull();
   });
 });

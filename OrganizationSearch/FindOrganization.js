@@ -24,8 +24,10 @@ import {
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
 
 const idPrefix = 'ui-plugin-find-organization-';
-const modalLabel = <FormattedMessage id="ui-plugin-find-organization.modal.label" />;
-const resultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.meta.pluginTitle" />;
+const defaultModalLabel = <FormattedMessage id="ui-plugin-find-organization.modal.label" />;
+const donorsModalLabel = <FormattedMessage id="ui-plugin-find-organization.donors.modal.label" />;
+const defaultResultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.meta.pluginTitle" />;
+const donorsResultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.donors.meta.pluginTitle" />;
 
 const columnMapping = {
   name: <FormattedMessage id="ui-organizations.main.name" />,
@@ -59,6 +61,8 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
 
   const fetchRecords = isDonorsEnabled ? fetchDonors : fetchOrganizations;
   const searchableIndexes = isDonorsEnabled ? donorsSearchableIndexes : organizationSearchableIndexes;
+  const modalLabel = isDonorsEnabled ? donorsModalLabel : defaultModalLabel;
+  const resultsPaneTitle = isDonorsEnabled ? donorsResultsPaneTitle : defaultResultsPaneTitle;
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);

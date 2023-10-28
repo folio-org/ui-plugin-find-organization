@@ -1,5 +1,8 @@
 {
   "meta.pluginTitle": "Organizations",
   "modal.label": "Select Organization",
-  "searchButton.title": "Find Organization"
+  "searchButton.title": "Find Organization",
+  "donors.modal.label": "Select Donor",
+  "donors.meta.pluginTitle": "Donors",
+  "donors.addDonorButton.title": "Add Donor"
 }
