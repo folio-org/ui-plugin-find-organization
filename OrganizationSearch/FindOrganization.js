@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -48,14 +48,6 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
   const [searchParams, setSearchParams] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const visibleColumnsMemo = React.useMemo(() => {
-    if (isDonorsEnabled) {
-      return DONOR_COLUMNS;
-    }
-
-    return DEFAULT_VISIBLE_COLUMNS;
-  }, [isDonorsEnabled]);
-
   const { fetchOrganizations } = useOrganizations();
   const { fetchDonors } = useDonors();
 
@@ -63,6 +55,7 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
   const searchableIndexes = isDonorsEnabled ? donorsSearchableIndexes : organizationSearchableIndexes;
   const modalLabel = isDonorsEnabled ? donorsModalLabel : defaultModalLabel;
   const resultsPaneTitle = isDonorsEnabled ? donorsResultsPaneTitle : defaultResultsPaneTitle;
+  const visibleColumns = isDonorsEnabled ? DONOR_COLUMNS : DEFAULT_VISIBLE_COLUMNS;
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);
@@ -121,7 +114,7 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
       searchableIndexes={searchableIndexes}
       selectRecords={selectRecord}
       totalCount={totalCount}
-      visibleColumns={visibleColumnsMemo}
+      visibleColumns={visibleColumns}
       isMultiSelect={isDonorsEnabled}
       {...rest}
     />

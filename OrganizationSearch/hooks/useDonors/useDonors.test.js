@@ -53,7 +53,15 @@ describe('useDonors', () => {
   it('should make a get a request with filters', async () => {
     const { result } = renderHook(() => useDonors(), { wrapper });
 
-    await result.current.fetchDonors({ searchParams: { isVendor: [true] }, offset: 0, limit: 30 });
+    await result.current.fetchDonors({
+      searchParams: {
+        isVendor: [true],
+        sorting: 'name',
+        sortingDirection: 'ascending',
+      },
+      offset: 0,
+      limit: 30,
+    });
 
     expect(getMock).toHaveBeenCalledWith(
       'organizations/organizations',
@@ -61,7 +69,7 @@ describe('useDonors', () => {
         searchParams: {
           limit: 30,
           offset: 0,
-          query: 'isVendor=("true") and status=="active" and isDonor=true',
+          query: '(isVendor=("true") and status=="active" and isDonor=true) sortby name/sort.ascending',
         },
       },
     );
