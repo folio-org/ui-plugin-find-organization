@@ -1,4 +1,4 @@
-import { render } from '@folio/jest-config-stripes/testing-library/react';
+import { queryByText, render } from '@folio/jest-config-stripes/testing-library/react';
 
 import { organizationTypes } from 'fixtures';
 import { useTypes } from '../hooks';
@@ -9,10 +9,11 @@ jest.mock('../hooks', () => ({
   useTypes: jest.fn(),
 }));
 
-const renderOrganizationsListFilter = () => (render(
+const renderOrganizationsListFilter = (props) => (render(
   <OrganizationsListFilter
     activeFilters={{}}
     applyFilters={jest.fn}
+    {...props}
   />,
 ));
 
@@ -30,5 +31,18 @@ describe('OrganizationsListFilter component', () => {
     expect(getByText('ui-organizations.filterConfig.country')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.languages')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.paymentMethod')).toBeDefined();
+  });
+
+  it('should display donor-related filters', () => {
+    const { getByText } = renderOrganizationsListFilter({ isDonorsEnabled: true });
+
+    expect(queryByText('ui-organizations.filterConfig.vendorStatus')).not.toBeDefined();
+    expect(getByText('ui-organizations.filterConfig.tags')).toBeDefined();
+    expect(queryByText('ui-organizations.filterConfig.types')).not.toBeDefined();
+    expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
+    expect(queryByText('ui-organizations.filterConfig.isDonor')).not.toBeDefined();
+    expect(queryByText('ui-organizations.filterConfig.country')).not.toBeDefined();
+    expect(queryByText('ui-organizations.filterConfig.languages')).not.toBeDefined();
+    expect(queryByText('ui-organizations.filterConfig.paymentMethod')).not.toBeDefined();
   });
 });

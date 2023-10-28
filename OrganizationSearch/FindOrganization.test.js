@@ -4,8 +4,11 @@ import {
   PLUGIN_RESULT_COUNT_INCREMENT,
 } from '@folio/stripes-acq-components';
 
-import { useOrganizations } from './hooks';
 import { FindOrganization } from './FindOrganization';
+import {
+  useDonors,
+  useOrganizations,
+} from './hooks';
 
 jest.mock('@folio/stripes-acq-components', () => {
   return {
@@ -14,11 +17,12 @@ jest.mock('@folio/stripes-acq-components', () => {
   };
 });
 jest.mock('./hooks', () => ({
+  useDonors: jest.fn(),
   useOrganizations: jest.fn(),
 }));
 
-const renderFindOrganization = () => (render(
-  <FindOrganization selectVendor={jest.fn()} />,
+const renderFindOrganization = (props) => (render(
+  <FindOrganization selectVendor={jest.fn()} {...props} />,
 ));
 
 describe('FindOrganization component', () => {
@@ -26,6 +30,7 @@ describe('FindOrganization component', () => {
     FindRecords.mockClear();
 
     useOrganizations.mockClear().mockReturnValue({ fetchOrganizations: jest.fn() });
+    useDonors.mockClear().mockReturnValue({ fetchDonors: jest.fn() });
   });
 
   it('should render FindRecords component', async () => {
@@ -62,6 +67,39 @@ describe('FindOrganization component', () => {
     }));
 
     expect(fetchOrganizationsMock).toHaveBeenCalledWith({
+      limit: PLUGIN_RESULT_COUNT_INCREMENT,
+      offset: 1,
+      searchParams: {},
+    });
+  });
+});
+
+describe('FindOrganization component with isDonorsEnabled', () => {
+  beforeEach(() => {
+    FindRecords.mockClear();
+
+    useOrganizations.mockClear().mockReturnValue({ fetchOrganizations: jest.fn() });
+    useDonors.mockClear().mockReturnValue({ fetchDonors: jest.fn() });
+  });
+
+  it('should render FindRecords component with donors columns', async () => {
+    const { getByText } = renderFindOrganization({ isDonorsEnabled: true });
+
+    expect(getByText('FindRecords')).toBeDefined();
+  });
+
+  it('should call fetchDonors when onNeedMoreData is called', async () => {
+    const fetchDonorsMock = jest.fn().mockReturnValue(Promise.resolve({ organizations: [], totalRecords: 0 }));
+
+    useDonors.mockClear().mockReturnValue({ fetchDonors: fetchDonorsMock });
+    renderFindOrganization({ isDonorsEnabled: true });
+
+    await act(async () => FindRecords.mock.calls[0][0].onNeedMoreData({
+      limit: PLUGIN_RESULT_COUNT_INCREMENT,
+      offset: 1,
+    }));
+
+    expect(fetchDonorsMock).toHaveBeenCalledWith({
       limit: PLUGIN_RESULT_COUNT_INCREMENT,
       offset: 1,
       searchParams: {},

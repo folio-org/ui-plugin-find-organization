@@ -7,10 +7,19 @@ import {
   PLUGIN_RESULT_COUNT_INCREMENT,
 } from '@folio/stripes-acq-components';
 
+import {
+  DEFAULT_VISIBLE_COLUMNS,
+  DONOR_COLUMNS,
+} from './constants';
+import {
+  useDonors,
+  useOrganizations,
+} from './hooks';
 import { OrganizationsListFilter } from './OrganizationsListFilter';
-import { useOrganizations } from './hooks';
-
-import { searchableIndexes } from './OrganizationsSearchConfig';
+import {
+  donorsSearchableIndexes,
+  organizationSearchableIndexes,
+} from './OrganizationsSearchConfig';
 
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
 
@@ -18,7 +27,6 @@ const idPrefix = 'ui-plugin-find-organization-';
 const modalLabel = <FormattedMessage id="ui-plugin-find-organization.modal.label" />;
 const resultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.meta.pluginTitle" />;
 
-const visibleColumns = ['name', 'code', 'description', 'status', 'isVendor'];
 const columnMapping = {
   name: <FormattedMessage id="ui-organizations.main.name" />,
   code: <FormattedMessage id="ui-organizations.main.code" />,
@@ -31,14 +39,26 @@ const resultsFormatter = {
   isVendor: data => <FormattedMessage id={`ui-organizations.main.isVendor.${data.isVendor ? 'yes' : 'no'}`} />,
 };
 
-export const FindOrganization = ({ selectVendor, ...rest }) => {
+export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => {
   const [pagination, setPagination] = useState(INIT_PAGINATION);
   const [totalCount, setTotalCount] = useState(0);
   const [records, setRecords] = useState([]);
   const [searchParams, setSearchParams] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
+  const visibleColumnsMemo = React.useMemo(() => {
+    if (isDonorsEnabled) {
+      return DONOR_COLUMNS;
+    }
+
+    return DEFAULT_VISIBLE_COLUMNS;
+  }, [isDonorsEnabled]);
+
   const { fetchOrganizations } = useOrganizations();
+  const { fetchDonors } = useDonors();
+
+  const fetchRecords = isDonorsEnabled ? fetchDonors : fetchOrganizations;
+  const searchableIndexes = isDonorsEnabled ? donorsSearchableIndexes : organizationSearchableIndexes;
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);
@@ -48,37 +68,38 @@ export const FindOrganization = ({ selectVendor, ...rest }) => {
     setPagination(INIT_PAGINATION);
     setSearchParams(filters);
 
-    fetchOrganizations({ ...INIT_PAGINATION, searchParams: filters })
+    fetchRecords({ ...INIT_PAGINATION, searchParams: filters })
       .then(({ organizations, totalRecords }) => {
         setTotalCount(totalRecords);
         setRecords(organizations);
       })
       .finally(() => setIsLoading(false));
-  }, [fetchOrganizations]);
+  }, [fetchRecords]);
 
   const onNeedMoreData = useCallback((newPagination) => {
     setIsLoading(true);
 
-    fetchOrganizations({ ...newPagination, searchParams })
+    fetchRecords({ ...newPagination, searchParams })
       .then(({ organizations }) => {
         setPagination(newPagination);
         setRecords(organizations);
       })
       .finally(() => setIsLoading(false));
-  }, [fetchOrganizations, searchParams]);
+  }, [fetchRecords, searchParams]);
 
   const renderFilters = useCallback((activeFilters, applyFilters) => {
     return (
       <OrganizationsListFilter
         activeFilters={activeFilters}
         applyFilters={applyFilters}
+        isDonorsEnabled={isDonorsEnabled}
       />
     );
-  }, []);
+  }, [isDonorsEnabled]);
 
   const selectRecord = useCallback((vendors) => {
-    selectVendor(vendors[0]);
-  }, [selectVendor]);
+    selectVendor(isDonorsEnabled ? vendors : vendors[0]);
+  }, [isDonorsEnabled, selectVendor]);
 
   return (
     <FindRecords
@@ -96,7 +117,8 @@ export const FindOrganization = ({ selectVendor, ...rest }) => {
       searchableIndexes={searchableIndexes}
       selectRecords={selectRecord}
       totalCount={totalCount}
-      visibleColumns={visibleColumns}
+      visibleColumns={visibleColumnsMemo}
+      isMultiSelect={isDonorsEnabled}
       {...rest}
     />
   );
@@ -104,4 +126,10 @@ export const FindOrganization = ({ selectVendor, ...rest }) => {
 
 FindOrganization.propTypes = {
   selectVendor: PropTypes.func.isRequired,
+  visibleColumns: PropTypes.arrayOf(PropTypes.string),
+  isDonorsEnabled: PropTypes.bool,
+};
+
+FindOrganization.defaultProps = {
+  isDonorsEnabled: false,
 };

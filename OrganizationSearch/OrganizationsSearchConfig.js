@@ -1,6 +1,6 @@
 import { buildArrayFieldQuery } from '@folio/stripes-acq-components';
 
-import { FILTERS } from './constants';
+import { DONOR_COLUMNS, FILTERS } from './constants';
 
 const indexesMap = {
   name: 'name',
@@ -17,7 +17,7 @@ const placeholderIdsMap = {
   [indexesMap.language]: 'ui-organizations.search.placeholder.language',
 };
 
-export const searchableIndexes = [
+export const organizationSearchableIndexes = [
   {
     labelId: 'ui-organizations.search.keyword',
     value: '',
@@ -28,6 +28,12 @@ export const searchableIndexes = [
     value: index,
   })),
 ];
+
+export const donorsSearchableIndexes = DONOR_COLUMNS.map(column => ({
+  labelId: `ui-organizations.search.${column}`,
+  placeholderId: placeholderIdsMap[column],
+  value: column,
+}));
 
 export const getKeywordQuery = query => indexes.reduce(
   (acc, sIndex) => {
