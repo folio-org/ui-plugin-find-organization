@@ -17,7 +17,7 @@ const placeholderIdsMap = {
   [indexesMap.language]: 'ui-organizations.search.placeholder.language',
 };
 
-export const organizationSearchableIndexes = [
+export const searchableIndexes = [
   {
     labelId: 'ui-organizations.search.keyword',
     value: '',

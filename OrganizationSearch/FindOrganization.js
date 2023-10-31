@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -8,17 +8,15 @@ import {
 } from '@folio/stripes-acq-components';
 
 import {
+  DEFAULT_DONOR_FILTERS,
   DEFAULT_VISIBLE_COLUMNS,
   DONOR_COLUMNS,
 } from './constants';
-import {
-  useDonors,
-  useOrganizations,
-} from './hooks';
+import { useOrganizations } from './hooks';
 import { OrganizationsListFilter } from './OrganizationsListFilter';
 import {
   donorsSearchableIndexes,
-  organizationSearchableIndexes,
+  searchableIndexes as organizationSearchableIndexes,
 } from './OrganizationsSearchConfig';
 
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
@@ -49,13 +47,12 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
   const [isLoading, setIsLoading] = useState(false);
 
   const { fetchOrganizations } = useOrganizations();
-  const { fetchDonors } = useDonors();
 
-  const fetchRecords = isDonorsEnabled ? fetchDonors : fetchOrganizations;
   const searchableIndexes = isDonorsEnabled ? donorsSearchableIndexes : organizationSearchableIndexes;
   const modalLabel = isDonorsEnabled ? donorsModalLabel : defaultModalLabel;
   const resultsPaneTitle = isDonorsEnabled ? donorsResultsPaneTitle : defaultResultsPaneTitle;
   const visibleColumns = isDonorsEnabled ? DONOR_COLUMNS : DEFAULT_VISIBLE_COLUMNS;
+  const initialFilters = isDonorsEnabled ? DEFAULT_DONOR_FILTERS : {};
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);
@@ -65,24 +62,24 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
     setPagination(INIT_PAGINATION);
     setSearchParams(filters);
 
-    fetchRecords({ ...INIT_PAGINATION, searchParams: filters })
+    fetchOrganizations({ ...INIT_PAGINATION, searchParams: filters })
       .then(({ organizations, totalRecords }) => {
         setTotalCount(totalRecords);
         setRecords(organizations);
       })
       .finally(() => setIsLoading(false));
-  }, [fetchRecords]);
+  }, [fetchOrganizations]);
 
   const onNeedMoreData = useCallback((newPagination) => {
     setIsLoading(true);
 
-    fetchRecords({ ...newPagination, searchParams })
+    fetchOrganizations({ ...newPagination, searchParams })
       .then(({ organizations }) => {
         setPagination(newPagination);
         setRecords(organizations);
       })
       .finally(() => setIsLoading(false));
-  }, [fetchRecords, searchParams]);
+  }, [fetchOrganizations, searchParams]);
 
   const renderFilters = useCallback((activeFilters, applyFilters) => {
     return (
@@ -109,6 +106,7 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
       records={records}
       refreshRecords={refreshRecords}
       renderFilters={renderFilters}
+      initialFilters={initialFilters}
       resultsFormatter={resultsFormatter}
       resultsPaneTitle={resultsPaneTitle}
       searchableIndexes={searchableIndexes}
@@ -123,7 +121,6 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
 
 FindOrganization.propTypes = {
   selectVendor: PropTypes.func.isRequired,
-  visibleColumns: PropTypes.arrayOf(PropTypes.string),
   isDonorsEnabled: PropTypes.bool,
 };
 

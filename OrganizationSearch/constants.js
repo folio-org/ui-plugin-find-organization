@@ -48,3 +48,8 @@ export const DONORS_SORT_MAP = {
   name: 'name',
   code: 'code',
 };
+
+export const DEFAULT_DONOR_FILTERS = {
+  [FILTERS.IS_DONOR]: ['true'],
+  [FILTERS.STATUS]: [ORGANIZATION_STATUS.active],
+};

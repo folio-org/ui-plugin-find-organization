@@ -5,10 +5,7 @@ import {
 } from '@folio/stripes-acq-components';
 
 import { FindOrganization } from './FindOrganization';
-import {
-  useDonors,
-  useOrganizations,
-} from './hooks';
+import { useOrganizations } from './hooks';
 
 jest.mock('@folio/stripes-acq-components', () => {
   return {
@@ -17,7 +14,6 @@ jest.mock('@folio/stripes-acq-components', () => {
   };
 });
 jest.mock('./hooks', () => ({
-  useDonors: jest.fn(),
   useOrganizations: jest.fn(),
 }));
 
@@ -30,7 +26,6 @@ describe('FindOrganization component', () => {
     FindRecords.mockClear();
 
     useOrganizations.mockClear().mockReturnValue({ fetchOrganizations: jest.fn() });
-    useDonors.mockClear().mockReturnValue({ fetchDonors: jest.fn() });
   });
 
   it('should render FindRecords component', async () => {
@@ -79,7 +74,6 @@ describe('FindOrganization component with isDonorsEnabled', () => {
     FindRecords.mockClear();
 
     useOrganizations.mockClear().mockReturnValue({ fetchOrganizations: jest.fn() });
-    useDonors.mockClear().mockReturnValue({ fetchDonors: jest.fn() });
   });
 
   it('should render FindRecords component with donors columns', async () => {
@@ -89,9 +83,9 @@ describe('FindOrganization component with isDonorsEnabled', () => {
   });
 
   it('should call fetchDonors when onNeedMoreData is called', async () => {
-    const fetchDonorsMock = jest.fn().mockReturnValue(Promise.resolve({ organizations: [], totalRecords: 0 }));
+    const fetchOrganizationMock = jest.fn().mockReturnValue(Promise.resolve({ organizations: [], totalRecords: 0 }));
 
-    useDonors.mockClear().mockReturnValue({ fetchDonors: fetchDonorsMock });
+    useOrganizations.mockClear().mockReturnValue({ fetchOrganizations: fetchOrganizationMock });
     renderFindOrganization({ isDonorsEnabled: true });
 
     await act(async () => FindRecords.mock.calls[0][0].onNeedMoreData({
@@ -99,7 +93,7 @@ describe('FindOrganization component with isDonorsEnabled', () => {
       offset: 1,
     }));
 
-    expect(fetchDonorsMock).toHaveBeenCalledWith({
+    expect(fetchOrganizationMock).toHaveBeenCalledWith({
       limit: PLUGIN_RESULT_COUNT_INCREMENT,
       offset: 1,
       searchParams: {},
