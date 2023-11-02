@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 export const ORGANIZATION_STATUS = {
@@ -25,6 +24,8 @@ export const FILTERS = {
   TYPES: 'organizationTypes',
 };
 
+export const VISIBLE_FILTERS = Object.values(FILTERS);
+
 export const STATUS_OPTIONS = Object.values(ORGANIZATION_STATUS).map(status => ({
   value: status,
   label: ORGANIZATION_STATUS_LABELS[status],
@@ -40,3 +41,5 @@ export const BOOLEAN_OPTIONS = [
     label: <FormattedMessage id="stripes-acq-components.filter.false" />,
   },
 ];
+
+export const VISIBLE_COLUMNS = ['name', 'code', 'description', 'status', 'isVendor'];

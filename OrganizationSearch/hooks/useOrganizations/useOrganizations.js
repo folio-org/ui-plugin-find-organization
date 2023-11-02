@@ -1,9 +1,10 @@
-import { parse, stringify } from 'query-string';
+import {
+  parse,
+  stringify,
+} from 'query-string';
 import { useCallback } from 'react';
 
-import {
-  useOkapiKy,
-} from '@folio/stripes/core';
+import { useOkapiKy } from '@folio/stripes/core';
 import {
   getFiltersCount,
   makeQueryBuilder,

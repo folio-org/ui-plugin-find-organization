@@ -7,9 +7,12 @@ import {
   PLUGIN_RESULT_COUNT_INCREMENT,
 } from '@folio/stripes-acq-components';
 
-import { OrganizationsListFilter } from './OrganizationsListFilter';
+import {
+  VISIBLE_FILTERS,
+  VISIBLE_COLUMNS,
+} from './constants';
 import { useOrganizations } from './hooks';
-
+import { OrganizationsListFilter } from './OrganizationsListFilter';
 import { searchableIndexes } from './OrganizationsSearchConfig';
 
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
@@ -18,7 +21,6 @@ const idPrefix = 'ui-plugin-find-organization-';
 const modalLabel = <FormattedMessage id="ui-plugin-find-organization.modal.label" />;
 const resultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.meta.pluginTitle" />;
 
-const visibleColumns = ['name', 'code', 'description', 'status', 'isVendor'];
 const columnMapping = {
   name: <FormattedMessage id="ui-organizations.main.name" />,
   code: <FormattedMessage id="ui-organizations.main.code" />,
@@ -31,7 +33,12 @@ const resultsFormatter = {
   isVendor: data => <FormattedMessage id={`ui-organizations.main.isVendor.${data.isVendor ? 'yes' : 'no'}`} />,
 };
 
-export const FindOrganization = ({ selectVendor, ...rest }) => {
+export const FindOrganization = ({
+  isMultiSelect,
+  selectVendor,
+  visibleFilters,
+  ...rest
+}) => {
   const [pagination, setPagination] = useState(INIT_PAGINATION);
   const [totalCount, setTotalCount] = useState(0);
   const [records, setRecords] = useState([]);
@@ -72,13 +79,14 @@ export const FindOrganization = ({ selectVendor, ...rest }) => {
       <OrganizationsListFilter
         activeFilters={activeFilters}
         applyFilters={applyFilters}
+        visibleFilters={visibleFilters}
       />
     );
-  }, []);
+  }, [visibleFilters]);
 
   const selectRecord = useCallback((vendors) => {
-    selectVendor(vendors[0]);
-  }, [selectVendor]);
+    selectVendor(isMultiSelect ? vendors : vendors[0]);
+  }, [isMultiSelect, selectVendor]);
 
   return (
     <FindRecords
@@ -96,7 +104,8 @@ export const FindOrganization = ({ selectVendor, ...rest }) => {
       searchableIndexes={searchableIndexes}
       selectRecords={selectRecord}
       totalCount={totalCount}
-      visibleColumns={visibleColumns}
+      visibleColumns={VISIBLE_COLUMNS}
+      isMultiSelect={isMultiSelect}
       {...rest}
     />
   );
@@ -104,4 +113,13 @@ export const FindOrganization = ({ selectVendor, ...rest }) => {
 
 FindOrganization.propTypes = {
   selectVendor: PropTypes.func.isRequired,
+  isMultiSelect: PropTypes.bool,
+  visibleFilters: PropTypes.arrayOf(
+    PropTypes.oneOf(VISIBLE_FILTERS),
+  ),
+};
+
+FindOrganization.defaultProps = {
+  isMultiSelect: false,
+  visibleFilters: VISIBLE_FILTERS,
 };
