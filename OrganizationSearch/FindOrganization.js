@@ -114,7 +114,9 @@ export const FindOrganization = ({
 FindOrganization.propTypes = {
   selectVendor: PropTypes.func.isRequired,
   isMultiSelect: PropTypes.bool,
-  visibleFilters: PropTypes.arrayOf(),
+  visibleFilters: PropTypes.arrayOf(
+    PropTypes.oneOf(VISIBLE_FILTERS),
+  ),
 };
 
 FindOrganization.defaultProps = {
