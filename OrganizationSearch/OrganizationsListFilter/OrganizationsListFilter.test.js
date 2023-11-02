@@ -1,6 +1,8 @@
 import { render } from '@folio/jest-config-stripes/testing-library/react';
 
 import { organizationTypes } from 'fixtures';
+
+import { FILTERS } from '../constants';
 import { useTypes } from '../hooks';
 import OrganizationsListFilter from './OrganizationsListFilter';
 
@@ -23,7 +25,7 @@ describe('OrganizationsListFilter component', () => {
   });
 
   it('should display filters', () => {
-    const { getByText } = renderOrganizationsListFilter({ isDonorsEnabled: false });
+    const { getByText } = renderOrganizationsListFilter();
 
     expect(getByText('ui-organizations.filterConfig.organizationStatus')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
@@ -34,7 +36,13 @@ describe('OrganizationsListFilter component', () => {
   });
 
   it('should display donor-related filters', () => {
-    const { getByText, queryByText } = renderOrganizationsListFilter({ isDonorsEnabled: true });
+    const { getByText, queryByText } = renderOrganizationsListFilter({
+      visibleFilters: [
+        FILTERS.TAGS,
+        FILTERS.TYPES,
+        FILTERS.IS_VENDOR,
+      ],
+    });
 
     expect(getByText('stripes-acq-components.filter.tags')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
