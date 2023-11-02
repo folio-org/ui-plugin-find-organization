@@ -24,6 +24,8 @@ export const FILTERS = {
   TYPES: 'organizationTypes',
 };
 
+export const VISIBLE_FILTERS = Object.values(FILTERS);
+
 export const STATUS_OPTIONS = Object.values(ORGANIZATION_STATUS).map(status => ({
   value: status,
   label: ORGANIZATION_STATUS_LABELS[status],
@@ -40,16 +42,4 @@ export const BOOLEAN_OPTIONS = [
   },
 ];
 
-export const DEFAULT_VISIBLE_COLUMNS = ['name', 'code', 'description', 'status', 'isVendor'];
-
-export const DONOR_COLUMNS = ['name', 'code'];
-
-export const DONORS_SORT_MAP = {
-  name: 'name',
-  code: 'code',
-};
-
-export const DEFAULT_DONOR_FILTERS = {
-  [FILTERS.IS_DONOR]: ['true'],
-  [FILTERS.STATUS]: [ORGANIZATION_STATUS.active],
-};
+export const VISIBLE_COLUMNS = ['name', 'code', 'description', 'status', 'isVendor'];

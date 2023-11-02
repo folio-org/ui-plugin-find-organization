@@ -8,24 +8,18 @@ import {
 } from '@folio/stripes-acq-components';
 
 import {
-  DEFAULT_DONOR_FILTERS,
-  DEFAULT_VISIBLE_COLUMNS,
-  DONOR_COLUMNS,
+  VISIBLE_FILTERS,
+  VISIBLE_COLUMNS,
 } from './constants';
 import { useOrganizations } from './hooks';
 import { OrganizationsListFilter } from './OrganizationsListFilter';
-import {
-  donorsSearchableIndexes,
-  searchableIndexes as organizationSearchableIndexes,
-} from './OrganizationsSearchConfig';
+import { searchableIndexes } from './OrganizationsSearchConfig';
 
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
 
 const idPrefix = 'ui-plugin-find-organization-';
-const defaultModalLabel = <FormattedMessage id="ui-plugin-find-organization.modal.label" />;
-const donorsModalLabel = <FormattedMessage id="ui-plugin-find-organization.donors.modal.label" />;
-const defaultResultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.meta.pluginTitle" />;
-const donorsResultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.donors.meta.pluginTitle" />;
+const modalLabel = <FormattedMessage id="ui-plugin-find-organization.modal.label" />;
+const resultsPaneTitle = <FormattedMessage id="ui-plugin-find-organization.meta.pluginTitle" />;
 
 const columnMapping = {
   name: <FormattedMessage id="ui-organizations.main.name" />,
@@ -39,7 +33,12 @@ const resultsFormatter = {
   isVendor: data => <FormattedMessage id={`ui-organizations.main.isVendor.${data.isVendor ? 'yes' : 'no'}`} />,
 };
 
-export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => {
+export const FindOrganization = ({
+  isMultiSelect,
+  selectVendor,
+  visibleFilters,
+  ...rest
+}) => {
   const [pagination, setPagination] = useState(INIT_PAGINATION);
   const [totalCount, setTotalCount] = useState(0);
   const [records, setRecords] = useState([]);
@@ -47,12 +46,6 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
   const [isLoading, setIsLoading] = useState(false);
 
   const { fetchOrganizations } = useOrganizations();
-
-  const searchableIndexes = isDonorsEnabled ? donorsSearchableIndexes : organizationSearchableIndexes;
-  const modalLabel = isDonorsEnabled ? donorsModalLabel : defaultModalLabel;
-  const resultsPaneTitle = isDonorsEnabled ? donorsResultsPaneTitle : defaultResultsPaneTitle;
-  const visibleColumns = isDonorsEnabled ? DONOR_COLUMNS : DEFAULT_VISIBLE_COLUMNS;
-  const initialFilters = isDonorsEnabled ? DEFAULT_DONOR_FILTERS : {};
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);
@@ -86,14 +79,14 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
       <OrganizationsListFilter
         activeFilters={activeFilters}
         applyFilters={applyFilters}
-        isDonorsEnabled={isDonorsEnabled}
+        visibleFilters={visibleFilters}
       />
     );
-  }, [isDonorsEnabled]);
+  }, [visibleFilters]);
 
   const selectRecord = useCallback((vendors) => {
-    selectVendor(isDonorsEnabled ? vendors : vendors[0]);
-  }, [isDonorsEnabled, selectVendor]);
+    selectVendor(isMultiSelect ? vendors : vendors[0]);
+  }, [isMultiSelect, selectVendor]);
 
   return (
     <FindRecords
@@ -106,14 +99,13 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
       records={records}
       refreshRecords={refreshRecords}
       renderFilters={renderFilters}
-      initialFilters={initialFilters}
       resultsFormatter={resultsFormatter}
       resultsPaneTitle={resultsPaneTitle}
       searchableIndexes={searchableIndexes}
       selectRecords={selectRecord}
       totalCount={totalCount}
-      visibleColumns={visibleColumns}
-      isMultiSelect={isDonorsEnabled}
+      visibleColumns={VISIBLE_COLUMNS}
+      isMultiSelect={isMultiSelect}
       {...rest}
     />
   );
@@ -121,9 +113,11 @@ export const FindOrganization = ({ selectVendor, isDonorsEnabled, ...rest }) => 
 
 FindOrganization.propTypes = {
   selectVendor: PropTypes.func.isRequired,
-  isDonorsEnabled: PropTypes.bool,
+  isMultiSelect: PropTypes.bool,
+  visibleFilters: PropTypes.arrayOf(),
 };
 
 FindOrganization.defaultProps = {
-  isDonorsEnabled: false,
+  isMultiSelect: false,
+  visibleFilters: VISIBLE_FILTERS,
 };
