@@ -39,7 +39,7 @@ const OrganizationsListFilter = ({
         <AcqCheckboxFilter
           activeFilters={activeFilters[FILTERS.STATUS]}
           disabled={disabled}
-          labelId="ui-organizations.filterConfig.organizationStatus"
+          labelId="ui-organizations.filterConfig.vendorStatus"
           name={FILTERS.STATUS}
           onChange={adaptedApplyFilters}
           options={STATUS_OPTIONS}
