@@ -27,7 +27,7 @@ describe('OrganizationsListFilter component', () => {
   it('should display filters', () => {
     const { getByText } = renderOrganizationsListFilter();
 
-    expect(getByText('ui-organizations.filterConfig.organizationStatus')).toBeDefined();
+    expect(getByText('ui-organizations.filterConfig.vendorStatus')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.isDonor')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.country')).toBeDefined();
@@ -48,7 +48,7 @@ describe('OrganizationsListFilter component', () => {
     expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
     expect(getByText('ui-organizations.filterConfig.types')).toBeDefined();
 
-    expect(queryByText('ui-organizations.filterConfig.organizationStatus')).toBeNull();
+    expect(queryByText('ui-organizations.filterConfig.vendorStatus')).toBeNull();
     expect(queryByText('ui-organizations.filterConfig.isDonor')).toBeNull();
     expect(queryByText('ui-organizations.filterConfig.country')).toBeNull();
     expect(queryByText('ui-organizations.filterConfig.languages')).toBeNull();
