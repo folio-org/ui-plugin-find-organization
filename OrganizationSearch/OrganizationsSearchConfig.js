@@ -39,7 +39,9 @@ export const searchableIndexes = [
   })),
 ];
 
-const isSearchableIndexHidden = (stripes, sIndex) => protectedIndexesMap[sIndex] && !stripes?.hasPerm(protectedIndexesMap[sIndex]);
+const isSearchableIndexHidden = (stripes, sIndex) => Boolean(
+  protectedIndexesMap[sIndex] && !stripes?.hasPerm(protectedIndexesMap[sIndex]),
+);
 
 export const getSearchableIndexes = (stripes) => [
   KEYWORD_SEARCH_OPTION,

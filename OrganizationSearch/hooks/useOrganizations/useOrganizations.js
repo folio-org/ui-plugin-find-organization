@@ -32,12 +32,12 @@ export const useOrganizations = () => {
     const queryParams = parse(stringify(searchParams));
     const query = makeQueryBuilder(
       'cql.allRecords=1',
-      (query, qindex) => {
+      (searchQuery, qindex) => {
         if (qindex) {
-          return `(${qindex}=${query}*)`;
+          return `(${qindex}=${searchQuery}*)`;
         }
-    
-        return `(${getKeywordQuery(query, stripes)})`;
+
+        return `(${getKeywordQuery(searchQuery, stripes)})`;
       },
       'sortby name/sort.ascending',
       filterMap,
