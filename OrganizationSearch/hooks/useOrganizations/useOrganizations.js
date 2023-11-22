@@ -4,7 +4,10 @@ import {
 } from 'query-string';
 import { useCallback } from 'react';
 
-import { useOkapiKy } from '@folio/stripes/core';
+import {
+  useOkapiKy,
+  useStripes,
+} from '@folio/stripes/core';
 import {
   getFiltersCount,
   makeQueryBuilder,
@@ -17,21 +20,9 @@ import {
   getKeywordQuery,
 } from '../../OrganizationsSearchConfig';
 
-const buildQuery = makeQueryBuilder(
-  'cql.allRecords=1',
-  (query, qindex) => {
-    if (qindex) {
-      return `(${qindex}=${query}*)`;
-    }
-
-    return `(${getKeywordQuery(query)})`;
-  },
-  'sortby name/sort.ascending',
-  filterMap,
-);
-
 export const useOrganizations = () => {
   const ky = useOkapiKy();
+  const stripes = useStripes();
 
   const fetchOrganizations = useCallback(async ({
     searchParams = {},
@@ -39,7 +30,18 @@ export const useOrganizations = () => {
     limit = PLUGIN_RESULT_COUNT_INCREMENT,
   }) => {
     const queryParams = parse(stringify(searchParams));
-    const query = buildQuery(queryParams);
+    const query = makeQueryBuilder(
+      'cql.allRecords=1',
+      (query, qindex) => {
+        if (qindex) {
+          return `(${qindex}=${query}*)`;
+        }
+    
+        return `(${getKeywordQuery(query, stripes)})`;
+      },
+      'sortby name/sort.ascending',
+      filterMap,
+    )(queryParams);
     const filtersCount = getFiltersCount(queryParams);
 
     if (!filtersCount) {
