@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useState, useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { useStripes } from '@folio/stripes/core';
 import {
   FindRecords,
   PLUGIN_RESULT_COUNT_INCREMENT,
@@ -13,7 +14,7 @@ import {
 } from './constants';
 import { useOrganizations } from './hooks';
 import { OrganizationsListFilter } from './OrganizationsListFilter';
-import { searchableIndexes } from './OrganizationsSearchConfig';
+import { getSearchableIndexes } from './OrganizationsSearchConfig';
 
 const INIT_PAGINATION = { limit: PLUGIN_RESULT_COUNT_INCREMENT, offset: 0 };
 
@@ -39,6 +40,7 @@ export const FindOrganization = ({
   visibleFilters,
   ...rest
 }) => {
+  const stripes = useStripes();
   const [pagination, setPagination] = useState(INIT_PAGINATION);
   const [totalCount, setTotalCount] = useState(0);
   const [records, setRecords] = useState([]);
@@ -46,6 +48,8 @@ export const FindOrganization = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const { fetchOrganizations } = useOrganizations();
+
+  const searchableIndexes = useMemo(() => getSearchableIndexes(stripes), [stripes]);
 
   const refreshRecords = useCallback((filters) => {
     setIsLoading(true);
