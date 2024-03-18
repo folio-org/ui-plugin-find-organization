@@ -1,6 +1,9 @@
 # Change history for ui-plugin-find-organization
 
-## (5.1.0 IN PROGRESS)
+## (5.2.0 IN PROGRESS)
+
+## [5.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v5.1.0) (2024-03-18)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v5.0.0...v5.1.0)
 
 * Add the "Is Donor" filter selectable options for filters pane. Refs UIPFO-44.
 * Configure organizations modal to display donor organizations and their `name` and `code` fields only. Refs UIPFO-46.
