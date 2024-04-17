@@ -15,6 +15,9 @@ export const ORGANIZATION_STATUS_LABELS = {
 export const FILTERS = {
   ACQUISITIONS_UNIT: 'acqUnitIds',
   ADDRESS_COUNTRY: 'addresses',
+  CREATED_BY: 'metadata.createdByUserId',
+  DATE_CREATED: 'metadata.createdDate',
+  DATE_UPDATED: 'metadata.updatedDate',
   IS_VENDOR: 'isVendor',
   IS_DONOR: 'isDonor',
   LANGUAGE: 'language',
@@ -22,6 +25,7 @@ export const FILTERS = {
   STATUS: 'status',
   TAGS: 'tags',
   TYPES: 'organizationTypes',
+  UPDATED_BY: 'metadata.updatedByUserId',
 };
 
 export const VISIBLE_FILTERS = Object.values(FILTERS);

@@ -1,4 +1,7 @@
-import { buildArrayFieldQuery } from '@folio/stripes-acq-components';
+import {
+  buildArrayFieldQuery,
+  buildDateTimeRangeQuery,
+} from '@folio/stripes-acq-components';
 
 import { FILTERS } from './constants';
 
@@ -75,6 +78,8 @@ export const getKeywordQuery = (query, stripes) => indexes.reduce(
 export const filterMap = {
   [FILTERS.ADDRESS_COUNTRY]: (filterValue) => `${FILTERS.ADDRESS_COUNTRY}=country:${filterValue}`,
   [FILTERS.ACQUISITIONS_UNIT]: buildArrayFieldQuery.bind(null, [FILTERS.ACQUISITIONS_UNIT]),
+  [FILTERS.DATE_CREATED]: buildDateTimeRangeQuery.bind(null, [FILTERS.DATE_CREATED]),
+  [FILTERS.DATE_UPDATED]: buildDateTimeRangeQuery.bind(null, [FILTERS.DATE_UPDATED]),
   [FILTERS.TAGS]: buildArrayFieldQuery.bind(null, [FILTERS.TAGS]),
   [FILTERS.TYPES]: buildArrayFieldQuery.bind(null, [FILTERS.TYPES]),
 };

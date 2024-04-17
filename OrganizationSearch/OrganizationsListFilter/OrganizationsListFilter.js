@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 import {
   AcqCheckboxFilter,
+  AcqDateRangeFilter,
   AcqTagsFilter,
   AcqUnitFilter,
   CountryFilter,
   LanguageFilter,
   PAYMENT_METHOD_OPTIONS,
+  PluggableUserFilter,
 } from '@folio/stripes-acq-components';
 import { AccordionSet } from '@folio/stripes/components';
 
@@ -145,6 +147,58 @@ const OrganizationsListFilter = ({
           disabled={disabled}
           name={FILTERS.ACQUISITIONS_UNIT}
           onChange={adaptedApplyFilters}
+        />
+      ),
+    },
+    {
+      key: FILTERS.CREATED_BY,
+      component: (
+        <PluggableUserFilter
+          id={FILTERS.CREATED_BY}
+          activeFilters={activeFilters[FILTERS.CREATED_BY]}
+          labelId="ui-organizations.filterConfig.createdBy"
+          name={FILTERS.CREATED_BY}
+          onChange={adaptedApplyFilters}
+          disabled={disabled}
+        />
+      ),
+    },
+    {
+      key: FILTERS.DATE_CREATED,
+      component: (
+        <AcqDateRangeFilter
+          id={FILTERS.DATE_CREATED}
+          activeFilters={activeFilters[FILTERS.DATE_CREATED]}
+          disabled={disabled}
+          labelId="ui-organizations.filterConfig.dateCreated"
+          name={FILTERS.DATE_CREATED}
+          onChange={adaptedApplyFilters}
+        />
+      ),
+    },
+    {
+      key: FILTERS.UPDATED_BY,
+      component: (
+        <PluggableUserFilter
+          id={FILTERS.UPDATED_BY}
+          activeFilters={activeFilters[FILTERS.UPDATED_BY]}
+          labelId="ui-organizations.filterConfig.updatedBy"
+          name={FILTERS.UPDATED_BY}
+          onChange={adaptedApplyFilters}
+          disabled={disabled}
+        />
+      ),
+    },
+    {
+      key: FILTERS.DATE_UPDATED,
+      component: (
+        <AcqDateRangeFilter
+          id={FILTERS.DATE_UPDATED}
+          activeFilters={activeFilters[FILTERS.DATE_UPDATED]}
+          labelId="ui-organizations.filterConfig.dateUpdated"
+          name={FILTERS.DATE_UPDATED}
+          onChange={adaptedApplyFilters}
+          disabled={disabled}
         />
       ),
     },
