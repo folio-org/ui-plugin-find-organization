@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
   parse,
   stringify,
@@ -30,6 +31,10 @@ export const useOrganizations = () => {
     limit = PLUGIN_RESULT_COUNT_INCREMENT,
   }) => {
     const queryParams = parse(stringify(searchParams));
+    const filtersCount = getFiltersCount(queryParams);
+
+    moment.tz.setDefault(stripes.timezone);
+
     const query = makeQueryBuilder(
       'cql.allRecords=1',
       (searchQuery, qindex) => {
@@ -42,7 +47,8 @@ export const useOrganizations = () => {
       'sortby name/sort.ascending',
       filterMap,
     )(queryParams);
-    const filtersCount = getFiltersCount(queryParams);
+
+    moment.tz.setDefault();
 
     if (!filtersCount) {
       return { organizations: [], totalRecords: 0 };
