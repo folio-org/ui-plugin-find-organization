@@ -2,6 +2,9 @@
 
 ## (5.2.0 IN PROGRESS)
 
+## [5.1.1](https://github.com/folio-org/ui-plugin-find-organization/tree/v5.1.1) (2024-04-18)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v5.1.0...v5.1.1)
+
 * Add additional filters to support reporting requirements. Refs UIPFO-51.
 
 ## [5.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v5.1.0) (2024-03-18)
