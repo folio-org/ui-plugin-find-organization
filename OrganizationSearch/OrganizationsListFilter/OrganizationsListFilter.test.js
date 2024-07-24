@@ -6,9 +6,16 @@ import { FILTERS } from '../constants';
 import { useTypes } from '../hooks';
 import OrganizationsListFilter from './OrganizationsListFilter';
 
+jest.mock('@folio/stripes-acq-components/lib/hooks', () => ({
+  ...jest.requireActual('@folio/stripes-acq-components/lib/hooks'),
+  useAcquisitionUnits: jest.fn(() => ({ acquisitionsUnits: [] })),
+  useTagsConfigs: jest.fn(() => ({ configs: [], isFetched: true })),
+  useTags: jest.fn(() => ({ tags: [] })),
+  useUser: jest.fn(() => ({})),
+}));
 jest.mock('../hooks', () => ({
   ...jest.requireActual('../hooks'),
-  useTypes: jest.fn(),
+  useTypes: jest.fn(() => ({ organizationTypes: [] })),
 }));
 
 const renderOrganizationsListFilter = (props) => (render(
@@ -21,18 +28,20 @@ const renderOrganizationsListFilter = (props) => (render(
 
 describe('OrganizationsListFilter component', () => {
   beforeEach(() => {
-    useTypes.mockClear().mockReturnValue({ organizationTypes });
+    useTypes
+      .mockClear()
+      .mockReturnValue({ organizationTypes });
   });
 
   it('should display filters', () => {
     const { getByText } = renderOrganizationsListFilter();
 
-    expect(getByText('ui-organizations.filterConfig.vendorStatus')).toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.isDonor')).toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.country')).toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.languages')).toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.paymentMethod')).toBeDefined();
+    expect(getByText('ui-organizations.filterConfig.vendorStatus')).toBeInTheDocument();
+    expect(getByText('ui-organizations.filterConfig.isVendor')).toBeInTheDocument();
+    expect(getByText('ui-organizations.filterConfig.isDonor')).toBeInTheDocument();
+    expect(getByText('ui-organizations.filterConfig.country')).toBeInTheDocument();
+    expect(getByText('ui-organizations.filterConfig.languages')).toBeInTheDocument();
+    expect(getByText('ui-organizations.filterConfig.paymentMethod')).toBeInTheDocument();
   });
 
   it('should display donor-related filters', () => {
@@ -44,9 +53,9 @@ describe('OrganizationsListFilter component', () => {
       ],
     });
 
-    expect(getByText('stripes-acq-components.filter.tags')).toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.isVendor')).toBeDefined();
-    expect(getByText('ui-organizations.filterConfig.types')).toBeDefined();
+    expect(getByText('stripes-acq-components.filter.tags')).toBeInTheDocument();
+    expect(getByText('ui-organizations.filterConfig.isVendor')).toBeInTheDocument();
+    expect(getByText('ui-organizations.filterConfig.types')).toBeInTheDocument();
 
     expect(queryByText('ui-organizations.filterConfig.vendorStatus')).toBeNull();
     expect(queryByText('ui-organizations.filterConfig.isDonor')).toBeNull();
