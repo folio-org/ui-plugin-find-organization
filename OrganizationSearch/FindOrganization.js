@@ -35,9 +35,10 @@ const resultsFormatter = {
 };
 
 export const FindOrganization = ({
-  isMultiSelect,
+  isMultiSelect = false,
   selectVendor,
-  visibleFilters,
+  tenantId,
+  visibleFilters = VISIBLE_FILTERS,
   ...rest
 }) => {
   const stripes = useStripes();
@@ -47,7 +48,7 @@ export const FindOrganization = ({
   const [searchParams, setSearchParams] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { fetchOrganizations } = useOrganizations();
+  const { fetchOrganizations } = useOrganizations({ tenantId });
 
   const searchableIndexes = useMemo(() => getSearchableIndexes(stripes), [stripes]);
 
@@ -83,10 +84,11 @@ export const FindOrganization = ({
       <OrganizationsListFilter
         activeFilters={activeFilters}
         applyFilters={applyFilters}
+        tenantId={tenantId}
         visibleFilters={visibleFilters}
       />
     );
-  }, [visibleFilters]);
+  }, [tenantId, visibleFilters]);
 
   const selectRecord = useCallback((vendors) => {
     selectVendor(isMultiSelect ? vendors : vendors[0]);
@@ -116,14 +118,10 @@ export const FindOrganization = ({
 };
 
 FindOrganization.propTypes = {
-  selectVendor: PropTypes.func.isRequired,
   isMultiSelect: PropTypes.bool,
+  selectVendor: PropTypes.func.isRequired,
+  tenantId: PropTypes.string,
   visibleFilters: PropTypes.arrayOf(
     PropTypes.oneOf(VISIBLE_FILTERS),
   ),
-};
-
-FindOrganization.defaultProps = {
-  isMultiSelect: false,
-  visibleFilters: VISIBLE_FILTERS,
 };

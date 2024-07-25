@@ -27,12 +27,10 @@ const OrganizationsListFilter = ({
   activeFilters,
   applyFilters,
   disabled,
-  visibleFilters,
+  tenantId,
+  visibleFilters = VISIBLE_FILTERS,
 }) => {
-  const adaptedApplyFilters = useCallback(
-    applyFiltersAdapter(applyFilters),
-    [applyFilters],
-  );
+  const adaptedApplyFilters = useCallback((data) => applyFiltersAdapter(applyFilters)(data), [applyFilters]);
 
   const availableFilters = useMemo(() => [
     {
@@ -58,6 +56,7 @@ const OrganizationsListFilter = ({
           id={`org-filter-${FILTERS.TYPES}`}
           name={FILTERS.TYPES}
           onChange={adaptedApplyFilters}
+          tenantId={tenantId}
         />
       ),
     },
@@ -70,6 +69,7 @@ const OrganizationsListFilter = ({
           id={FILTERS.TAGS}
           name={FILTERS.TAGS}
           onChange={adaptedApplyFilters}
+          tenantId={tenantId}
         />
       ),
     },
@@ -147,6 +147,7 @@ const OrganizationsListFilter = ({
           disabled={disabled}
           name={FILTERS.ACQUISITIONS_UNIT}
           onChange={adaptedApplyFilters}
+          tenantId={tenantId}
         />
       ),
     },
@@ -160,6 +161,7 @@ const OrganizationsListFilter = ({
           name={FILTERS.CREATED_BY}
           onChange={adaptedApplyFilters}
           disabled={disabled}
+          tenantId={tenantId}
         />
       ),
     },
@@ -186,6 +188,7 @@ const OrganizationsListFilter = ({
           name={FILTERS.UPDATED_BY}
           onChange={adaptedApplyFilters}
           disabled={disabled}
+          tenantId={tenantId}
         />
       ),
     },
@@ -202,7 +205,7 @@ const OrganizationsListFilter = ({
         />
       ),
     },
-  ], [disabled, activeFilters, adaptedApplyFilters]);
+  ], [activeFilters, adaptedApplyFilters, disabled, tenantId]);
 
   const renderFilters = useCallback(() => {
     return availableFilters
@@ -225,11 +228,8 @@ OrganizationsListFilter.propTypes = {
   activeFilters: PropTypes.object.isRequired,
   applyFilters: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
+  tenantId: PropTypes.string,
   visibleFilters: PropTypes.arrayOf(PropTypes.string),
-};
-
-OrganizationsListFilter.defaultProps = {
-  visibleFilters: VISIBLE_FILTERS,
 };
 
 export default OrganizationsListFilter;

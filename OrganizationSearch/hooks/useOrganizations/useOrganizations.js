@@ -21,8 +21,10 @@ import {
   getKeywordQuery,
 } from '../../OrganizationsSearchConfig';
 
-export const useOrganizations = () => {
-  const ky = useOkapiKy();
+export const useOrganizations = (options = {}) => {
+  const { tenantId } = options;
+
+  const ky = useOkapiKy({ tenant: tenantId });
   const stripes = useStripes();
 
   const fetchOrganizations = useCallback(async ({

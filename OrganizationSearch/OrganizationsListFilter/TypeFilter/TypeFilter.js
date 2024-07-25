@@ -7,14 +7,15 @@ import { useTypes } from '../../hooks';
 
 export const TypeFilter = ({
   activeFilters,
-  closedByDefault,
-  disabled,
+  closedByDefault = true,
+  disabled = false,
   id,
-  labelId,
+  labelId = 'ui-organizations.filterConfig.types',
   name,
   onChange,
+  tenantId,
 }) => {
-  const { organizationTypes } = useTypes();
+  const { organizationTypes } = useTypes({ tenantId });
 
   const types = organizationTypes?.map(type => ({
     label: type.name,
@@ -52,10 +53,5 @@ TypeFilter.propTypes = {
   labelId: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-};
-
-TypeFilter.defaultProps = {
-  closedByDefault: true,
-  disabled: false,
-  labelId: 'ui-organizations.filterConfig.types',
+  tenantId: PropTypes.string,
 };

@@ -5,8 +5,14 @@ import { LIMIT_MAX } from '@folio/stripes-acq-components';
 
 const DEFAULT_DATA = [];
 
-export const useTypes = () => {
-  const ky = useOkapiKy();
+export const useTypes = (options = {}) => {
+  const {
+    enabled = true,
+    tenantId,
+    ...queryOptions
+  } = options;
+
+  const ky = useOkapiKy({ tenant: tenantId });
 
   const searchParams = {
     limit: LIMIT_MAX,
@@ -16,10 +22,12 @@ export const useTypes = () => {
   const {
     isLoading,
     data,
-  } = useQuery(
-    ['organization-types'],
-    () => ky.get('organizations-storage/organization-types', { searchParams }).json(),
-  );
+  } = useQuery({
+    queryKey: ['organization-types', tenantId],
+    queryFn: ({ signal }) => ky.get('organizations-storage/organization-types', { searchParams, signal }).json(),
+    enabled,
+    ...queryOptions,
+  });
 
   return ({
     organizationTypes: data?.organizationTypes ?? DEFAULT_DATA,
