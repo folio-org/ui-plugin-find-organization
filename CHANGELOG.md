@@ -2,6 +2,8 @@
 
 ## (5.3.0 IN PROGRESS)
 
+* Migrate to shared GA workflows. Refs UIPFO-58.
+
 ## [5.2.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v5.2.0) (2024-10-30)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v5.1.1...v5.2.0)
 
