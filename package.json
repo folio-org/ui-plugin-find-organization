@@ -26,7 +26,7 @@
     "lint": "eslint .",
     "test": "jest --ci --coverage",
     "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json ",
-    "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-plugin-find-organization ./translations/ui-plugin-find-organization/compiled"
+    "formatjs-compile": "stripes translate compile"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.17.0",
