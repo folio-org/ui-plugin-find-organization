@@ -1,6 +1,9 @@
 # Change history for ui-plugin-find-organization
 
-## (6.0.0 IN PROGRESS)
+## (6.1.0 IN PROGRESS)
+
+## [6.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v6.0.0) (2025-03-11)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v5.2.0...v6.0.0)
 
 * Migrate to shared GA workflows. Refs UIPFO-58.
 * *BREAKING* Migrate stripes dependencies to their Sunflower versions. Refs UIPFO-59.
