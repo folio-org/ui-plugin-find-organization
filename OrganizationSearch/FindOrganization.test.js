@@ -29,6 +29,7 @@ jest.mock('@folio/stripes-acq-components', () => {
 });
 jest.mock('./hooks', () => ({
   useOrganizations: jest.fn(),
+  useVisibleFilters: jest.fn(visibleFilters => visibleFilters),
 }));
 
 const fetchOrganizationsMock = jest.fn().mockReturnValue(Promise.resolve({
