@@ -12,7 +12,7 @@ import {
   VISIBLE_FILTERS,
   VISIBLE_COLUMNS,
 } from './constants';
-import { useOrganizations } from './hooks';
+import { useOrganizations, useVisibleFilters } from './hooks';
 import { OrganizationsListFilter } from './OrganizationsListFilter';
 import { getSearchableIndexes } from './OrganizationsSearchConfig';
 
@@ -38,7 +38,8 @@ export const FindOrganization = ({
   isMultiSelect = false,
   selectVendor,
   tenantId,
-  visibleFilters = VISIBLE_FILTERS,
+  visibleFilters,
+  hideFilters,
   ...rest
 }) => {
   const stripes = useStripes();
@@ -79,16 +80,18 @@ export const FindOrganization = ({
       .finally(() => setIsLoading(false));
   }, [fetchOrganizations, searchParams]);
 
+  const computedVisibleFilters = useVisibleFilters(visibleFilters, hideFilters);
+
   const renderFilters = useCallback((activeFilters, applyFilters) => {
     return (
       <OrganizationsListFilter
         activeFilters={activeFilters}
         applyFilters={applyFilters}
         tenantId={tenantId}
-        visibleFilters={visibleFilters}
+        visibleFilters={computedVisibleFilters}
       />
     );
-  }, [tenantId, visibleFilters]);
+  }, [tenantId, computedVisibleFilters]);
 
   const selectRecord = useCallback((vendors) => {
     selectVendor(isMultiSelect ? vendors : vendors[0]);
@@ -121,7 +124,12 @@ FindOrganization.propTypes = {
   isMultiSelect: PropTypes.bool,
   selectVendor: PropTypes.func.isRequired,
   tenantId: PropTypes.string,
+  // whitelist of available filters
   visibleFilters: PropTypes.arrayOf(
+    PropTypes.oneOf(VISIBLE_FILTERS),
+  ),
+  // blacklist of available filters, only takes effect if visibleFilters is not provided
+  hideFilters: PropTypes.arrayOf(
     PropTypes.oneOf(VISIBLE_FILTERS),
   ),
 };
