@@ -39,7 +39,7 @@ export const FindOrganization = ({
   selectVendor,
   tenantId,
   visibleFilters,
-  hideFilters,
+  hiddenFilters,
   ...rest
 }) => {
   const stripes = useStripes();
@@ -80,7 +80,7 @@ export const FindOrganization = ({
       .finally(() => setIsLoading(false));
   }, [fetchOrganizations, searchParams]);
 
-  const computedVisibleFilters = useVisibleFilters(visibleFilters, hideFilters);
+  const computedVisibleFilters = useVisibleFilters(visibleFilters, hiddenFilters);
 
   const renderFilters = useCallback((activeFilters, applyFilters) => {
     return (
@@ -129,7 +129,7 @@ FindOrganization.propTypes = {
     PropTypes.oneOf(VISIBLE_FILTERS),
   ),
   // blacklist of available filters, only takes effect if visibleFilters is not provided
-  hideFilters: PropTypes.arrayOf(
+  hiddenFilters: PropTypes.arrayOf(
     PropTypes.oneOf(VISIBLE_FILTERS),
   ),
 };

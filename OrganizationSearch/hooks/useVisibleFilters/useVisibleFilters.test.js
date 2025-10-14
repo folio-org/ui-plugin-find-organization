@@ -22,11 +22,11 @@ describe('useVisibleFilters', () => {
     expect(result.current).toEqual(customVisibleFilters);
   });
 
-  it('should filter out hideFilters from VISIBLE_FILTERS (blacklist)', () => {
-    const hideFilters = ['status', 'isVendor'];
-    const { result } = renderHook(() => useVisibleFilters(null, hideFilters));
+  it('should filter out hiddenFilters from VISIBLE_FILTERS (blacklist)', () => {
+    const hiddenFilters = ['status', 'isVendor'];
+    const { result } = renderHook(() => useVisibleFilters(null, hiddenFilters));
 
-    const expectedFilters = VISIBLE_FILTERS.filter((f) => !hideFilters.includes(f));
+    const expectedFilters = VISIBLE_FILTERS.filter((f) => !hiddenFilters.includes(f));
 
     expect(result.current).toEqual(expectedFilters);
   });
