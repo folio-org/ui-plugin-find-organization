@@ -1,10 +1,10 @@
-import moment from 'moment';
 import {
   parse,
   stringify,
 } from 'query-string';
 import { useCallback } from 'react';
 
+import { dayjs } from '@folio/stripes/components';
 import {
   useOkapiKy,
   useStripes,
@@ -35,7 +35,7 @@ export const useOrganizations = (options = {}) => {
     const queryParams = parse(stringify(searchParams));
     const filtersCount = getFiltersCount(queryParams);
 
-    moment.tz.setDefault(stripes.timezone);
+    dayjs.tz.setDefault(stripes.timezone);
 
     const query = makeQueryBuilder(
       'cql.allRecords=1',
@@ -50,7 +50,7 @@ export const useOrganizations = (options = {}) => {
       filterMap,
     )(queryParams);
 
-    moment.tz.setDefault();
+    dayjs.tz.setDefault();
 
     if (!filtersCount) {
       return { organizations: [], totalRecords: 0 };
