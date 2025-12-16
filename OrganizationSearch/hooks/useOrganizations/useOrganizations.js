@@ -4,7 +4,6 @@ import {
 } from 'query-string';
 import { useCallback } from 'react';
 
-import { dayjs } from '@folio/stripes/components';
 import {
   useOkapiKy,
   useStripes,
@@ -35,8 +34,6 @@ export const useOrganizations = (options = {}) => {
     const queryParams = parse(stringify(searchParams));
     const filtersCount = getFiltersCount(queryParams);
 
-    dayjs.tz.setDefault(stripes.timezone);
-
     const query = makeQueryBuilder(
       'cql.allRecords=1',
       (searchQuery, qindex) => {
@@ -48,9 +45,7 @@ export const useOrganizations = (options = {}) => {
       },
       'sortby name/sort.ascending',
       filterMap,
-    )(queryParams);
-
-    dayjs.tz.setDefault();
+    )(queryParams, { timezone: stripes.timezone });
 
     if (!filtersCount) {
       return { organizations: [], totalRecords: 0 };

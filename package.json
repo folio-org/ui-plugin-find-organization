@@ -50,7 +50,7 @@
     "react-router-dom": "^5.2.0"
   },
   "dependencies": {
-    "@folio/stripes-acq-components": "~7.1.0",
+    "@folio/stripes-acq-components": "~8.0.0",
     "classnames": "^2.2.5",
     "dom-helpers": "^3.4.0",
     "prop-types": "^15.6.0",
