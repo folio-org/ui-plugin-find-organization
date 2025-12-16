@@ -28,6 +28,8 @@ const stripesStub = {
   hasPerm: jest.fn(() => true),
 };
 
+const renderTestHook = (...args) => renderHook(() => useOrganizations(...args));
+
 describe('useOrganizations', () => {
   beforeEach(() => {
     useOkapiKy.mockReturnValue({ get: getMock });
@@ -39,7 +41,7 @@ describe('useOrganizations', () => {
   });
 
   it('should not make a get a request to fetch orgs when fetchOrganizations is called and without filters', async () => {
-    const { result } = renderHook(() => useOrganizations());
+    const { result } = renderTestHook();
 
     await result.current.fetchOrganizations({ searchParams: {}, offset: 0, limit: 30 });
 
@@ -47,7 +49,7 @@ describe('useOrganizations', () => {
   });
 
   it('should make a get a request to fetch orgs when fetchOrganizations is called and with filters', async () => {
-    const { result } = renderHook(() => useOrganizations());
+    const { result } = renderTestHook();
 
     await result.current.fetchOrganizations({ searchParams: { status: 'Active' }, offset: 0, limit: 30 });
 
@@ -64,7 +66,7 @@ describe('useOrganizations', () => {
   });
 
   it('should return orgs when fetchOrganizations is called and with filters', async () => {
-    const { result } = renderHook(() => useOrganizations());
+    const { result } = renderTestHook();
 
     const { organizations } = await result.current.fetchOrganizations({ searchParams: { status: 'Active' }, offset: 0, limit: 30 });
 
@@ -79,7 +81,7 @@ describe('useOrganizations', () => {
     };
 
     it('should include banking information index in the query if a user has the appropriate permission', async () => {
-      const { result } = renderHook(() => useOrganizations());
+      const { result } = renderTestHook();
 
       await result.current.fetchOrganizations(params);
 
@@ -93,7 +95,7 @@ describe('useOrganizations', () => {
     it('should NOT include banking information index in the query if a user does not have the appropriate permission', async () => {
       stripesStub.hasPerm.mockReturnValue(false);
 
-      const { result } = renderHook(() => useOrganizations());
+      const { result } = renderTestHook();
 
       await result.current.fetchOrganizations(params);
 
@@ -160,7 +162,7 @@ describe('useOrganizations', () => {
 
         const { start, end } = expectedResultsDict[timezone];
 
-        const { result } = renderHook(() => useOrganizations());
+        const { result } = renderTestHook();
 
         await result.current.fetchOrganizations({
           searchParams: {
