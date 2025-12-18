@@ -2,8 +2,6 @@
 
 ## (6.1.0 IN PROGRESS)
 
-* Remove usage of the `moment` library. Refs UIPFO-61.
-
 ## [6.0.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v6.0.0) (2025-03-11)
 [Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v5.2.0...v6.0.0)
 
