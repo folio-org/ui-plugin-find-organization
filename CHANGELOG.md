@@ -1,6 +1,9 @@
 # Change history for ui-plugin-find-organization
 
-## (6.1.0 IN PROGRESS)
+## 6.2.0 (IN PROGRESS)
+
+## [6.1.0](https://github.com/folio-org/ui-plugin-find-organization/tree/v6.1.0) (2026-04-17)
+[Full Changelog](https://github.com/folio-org/ui-plugin-find-organization/compare/v6.0.0...v6.1.0)
 
 * Remove usage of the `moment` library. Refs UIPFO-61.
 
